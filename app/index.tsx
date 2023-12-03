@@ -12,8 +12,6 @@ export default function Page() {
       <View style={styles.authContainer}>
         <AppleOAuth />
         <AppleOAuth />
-        <AppleOAuth />
-        <AppleOAuth />
       </View>
     </View>
   );
@@ -24,17 +22,18 @@ const styles = StyleSheet.create({
     flex: 1,
     maxWidth: 960,
     padding: 24,
-    backgroundColor: "#F3FF82",
   },
   headerContainer: {
     width: "100%",
     alignItems: "center",
-    backgroundColor: "#fff",
   },
   authContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
+    position: "absolute",
+    bottom: 24,
+    left: 0,
+    right: 0,
     rowGap: 24,
+    padding: 24,
   },
   title: {
     fontSize: 64,
