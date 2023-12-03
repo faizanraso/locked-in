@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import * as AppleAuthentication from "expo-apple-authentication";
-// import { supabase } from 'app/utils/supabase'
 
 export function AppleOAuth() {
   return (
