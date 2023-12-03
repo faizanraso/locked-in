@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
-import AppleOAuth from "../src/components/auth/AppleOAuth";
+
 import { Link } from "expo-router";
+import { AppleOAuth } from "../src/components/auth/AppleOAuth";
 
 export default function Page() {
   return (
@@ -10,7 +11,6 @@ export default function Page() {
         <Text style={styles.subtitle}>Time to focus.</Text>
       </View>
       <View style={styles.authContainer}>
-        <AppleOAuth />
         <AppleOAuth />
       </View>
     </View>
@@ -26,13 +26,15 @@ const styles = StyleSheet.create({
   headerContainer: {
     width: "100%",
     alignItems: "center",
+    padding: 24,
   },
   authContainer: {
     position: "absolute",
+    alignItems: "center",
     bottom: 24,
     left: 0,
     right: 0,
-    rowGap: 24,
+    rowGap: 20,
     padding: 24,
   },
   title: {
