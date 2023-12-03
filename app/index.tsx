@@ -1,13 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
+import AppleOAuth from "../src/components/auth/AppleOAuth";
 import { Link } from "expo-router";
 
 export default function Page() {
   return (
     <View style={styles.container}>
-      <View style={styles.main}>
-        <Link href={"/home"}>Go to login</Link>
-        <Text style={styles.title}>Hello World</Text>
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
+      <View style={styles.headerContainer}>
+        <Text style={styles.title}>Locked In</Text>
+        <Text style={styles.subtitle}>Time to focus.</Text>
+      </View>
+      <View style={styles.authContainer}>
+        <AppleOAuth />
+        <AppleOAuth />
+        <AppleOAuth />
+        <AppleOAuth />
       </View>
     </View>
   );
@@ -16,14 +22,19 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    padding: 24,
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
     maxWidth: 960,
-    marginHorizontal: "auto",
+    padding: 24,
+    backgroundColor: "#F3FF82",
+  },
+  headerContainer: {
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
+  authContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+    rowGap: 24,
   },
   title: {
     fontSize: 64,
