@@ -42,8 +42,8 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   providers: [
     AppleProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+      clientId: env.APPLE_CLIENT_ID,
+      clientSecret: env.APPLE_CLIENT_SECRET,
     }),
     /**
      * ...add more providers here.
