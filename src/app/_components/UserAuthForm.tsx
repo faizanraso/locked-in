@@ -21,10 +21,10 @@ export function UserAuthForm() {
   return (
     <div
       className={cn(
-        "flex h-full w-full flex-col rounded-xl bg-white p-10 sm:h-3/6 sm:w-4/6 md:w-3/6 lg:h-3/6 lg:w-3/6",
+        "z-10 h-[545px] w-[475px] flex-col items-center justify-center rounded-xl bg-white px-6 py-10 sm:px-10",
       )}
     >
-      <div className="justify-between">
+      <div className="flex flex-col">
         <div className="py-3">
           <p className="text-xl">
             🔒 <span className="font-bold italic">locked in</span>
@@ -35,7 +35,7 @@ export function UserAuthForm() {
         </div>
       </div>
 
-      <div className="flex h-full w-full flex-col justify-between py-3">
+      <div className="flex w-full flex-col gap-y-3 py-3">
         <Button variant="outline" type="button" disabled={isLoading}>
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -44,8 +44,14 @@ export function UserAuthForm() {
           )}{" "}
           Github
         </Button>
-
-        <div>test</div>
+        <Button variant="outline" type="button" disabled={isLoading}>
+          {isLoading ? (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Icons.gitHub className="mr-2 h-4 w-4" />
+          )}{" "}
+          Github
+        </Button>
       </div>
     </div>
   );

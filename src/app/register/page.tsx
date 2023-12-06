@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AuthenticationPage() {
   return (
-    <main className="relative flex h-screen items-center justify-center bg-gradient-to-br from-blue-900 via-gray-800 to-gray-900">
+    <main className="absolute flex min-h-screen w-screen items-center justify-center bg-white sm:bg-gradient-to-bl sm:from-gray-900 sm:via-gray-800 sm:to-blue-900 sm:py-10">
       <div className="absolute inset-0 bg-[url(https://grainy-gradients.vercel.app/noise.svg)] opacity-25 brightness-100 contrast-150"></div>
       <UserAuthForm />
     </main>
