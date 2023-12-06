@@ -35,12 +35,7 @@ export const authOptions: NextAuthOptions = {
     }),
   },
   adapter: PrismaAdapter(db),
-  providers: [
-    AppleProvider({
-      clientId: env.APPLE_CLIENT_ID,
-      clientSecret: env.APPLE_CLIENT_SECRET,
-    }),
-  ],
+  providers: [],
 };
 
 /**
