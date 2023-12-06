@@ -3,15 +3,10 @@
 import * as React from "react";
 import { Button } from "~/components/ui/button";
 import { Icons } from "~/components/ui/icons";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
 
 import { cn } from "~/lib/utils";
 
-// tslint:disable-next-line
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserAuthForm() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   async function onSubmit(event: React.SyntheticEvent) {

@@ -1,8 +1,6 @@
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import type { Metadata } from "next";
 
-import { cn } from "~/lib/utils";
+// import { cn } from "~/lib/utils";
 import { UserAuthForm } from "../_components/UserAuthForm";
 
 export const metadata: Metadata = {
@@ -12,7 +10,8 @@ export const metadata: Metadata = {
 
 export default function AuthenticationPage() {
   return (
-    <main className="flex h-screen items-center justify-center bg-opacity-50 bg-gradient-to-br from-blue-900 via-gray-800 to-gray-900">
+    <main className="relative flex h-screen items-center justify-center bg-gradient-to-br from-blue-900 via-gray-800 to-gray-900">
+      <div className="absolute inset-0 bg-[url(https://grainy-gradients.vercel.app/noise.svg)] opacity-25 brightness-100 contrast-150"></div>
       <UserAuthForm />
     </main>
   );

@@ -1,12 +1,10 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import AppleProvider from "next-auth/providers/apple";
 import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
 
-import { env } from "~/env";
 import { db } from "~/server/db";
 
 declare module "next-auth" {
