@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AuthenticationPage() {
   return (
-    <main className="flex h-screen items-center justify-center bg-gradient-to-r from-cyan-400 to-blue-500">
+    <main className="flex h-screen items-center justify-center bg-opacity-50 bg-gradient-to-br from-blue-900 via-gray-800 to-gray-900">
       <UserAuthForm />
     </main>
   );
