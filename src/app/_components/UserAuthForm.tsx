@@ -8,6 +8,7 @@ import { Label } from "~/components/ui/label";
 
 import { cn } from "~/lib/utils";
 
+// tslint:disable-next-line
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
