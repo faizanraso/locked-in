@@ -1,14 +1,15 @@
 import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-sans",
+// });
 
 export const metadata = {
   title: "Locked In 🔒",
@@ -23,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
+      <body className={`font-sans ${GeistSans.className}`}>
         <TRPCReactProvider cookies={cookies().toString()}>
           {children}
         </TRPCReactProvider>
