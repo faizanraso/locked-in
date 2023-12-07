@@ -21,7 +21,7 @@ export function UserAuthForm() {
   return (
     <div
       className={cn(
-        " z-10 m-auto h-[545px] w-[475px] flex-col items-center justify-center rounded-xl bg-white px-6 py-10 sm:px-10",
+        "relative z-10 m-auto h-[345px] w-[475px] flex-col items-center justify-center rounded-xl bg-white px-6 py-10 sm:px-10",
       )}
     >
       <div className="flex flex-col">
@@ -31,7 +31,9 @@ export function UserAuthForm() {
           </p>
         </div>
         <div className="py-3 text-center">
-          <p className="text-xs text-gray-400">Continue to Locked In</p>
+          <p className="text-xs font-medium text-gray-400">
+            Continue to Locked In
+          </p>
         </div>
       </div>
 
@@ -42,16 +44,28 @@ export function UserAuthForm() {
           ) : (
             <Icons.gitHub className="mr-2 h-4 w-4" />
           )}{" "}
-          Github
+          Continue With Github
         </Button>
         <Button variant="outline" type="button" disabled={isLoading}>
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (
-            <Icons.gitHub className="mr-2 h-4 w-4" />
+            <Icons.google className="mr-2 h-4 w-4" />
           )}{" "}
-          Github
+          Continue With Google
         </Button>
+      </div>
+
+      <div className="absolute bottom-0 flex flex-row gap-x-3 py-5">
+        <p className="text-xs font-medium text-gray-500 transition duration-150 hover:underline">
+          Help
+        </p>
+        <p className="text-xs font-medium text-gray-500 transition duration-150 hover:underline">
+          Privacy
+        </p>
+        <p className="text-xs font-medium text-gray-500 transition duration-150 hover:underline">
+          Terms
+        </p>
       </div>
     </div>
   );
