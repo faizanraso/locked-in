@@ -8,12 +8,12 @@ import { signIn } from "next-auth/react";
 import { cn } from "~/lib/utils";
 
 export function UserAuthForm() {
-  async function signInWithGithub() {
-    await signIn("github", { callbackUrl: window.location.origin });
+  function signInWithGithub() {
+    signIn("github", { callbackUrl: window.location.origin });
   }
 
-  async function signInWithGoogle() {
-    await signIn("google", { callbackUrl: window.location.origin });
+  function signInWithGoogle() {
+    signIn("google", { callbackUrl: window.location.origin });
   }
 
   return (
