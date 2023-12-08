@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { cookies } from "next/headers";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.className}`}>
         <TRPCReactProvider cookies={cookies().toString()}>
           {children}
+          <SpeedInsights />
         </TRPCReactProvider>
       </body>
     </html>
