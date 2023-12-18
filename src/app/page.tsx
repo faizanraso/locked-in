@@ -8,9 +8,8 @@ export default async function Home() {
   // const session = await getServerAuthSession();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#fafafa] text-black dark:bg-black dark:text-white">
-      <Link href={"/login"}>Login</Link>
-      <Link href={"/register"}>Create an Account</Link>
+    <main className="flex min-h-screen flex-col items-center justify-center">
+      <Link href={"/login"}>Get Started</Link>
     </main>
   );
 }

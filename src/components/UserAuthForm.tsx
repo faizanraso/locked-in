@@ -19,7 +19,7 @@ export function UserAuthForm() {
   return (
     <div
       className={cn(
-        "relative z-10 m-auto h-fit w-[475px] flex-col items-center justify-center rounded-xl bg-white px-6 py-10 sm:px-10",
+        "relative z-10 m-auto h-fit w-[475px] flex-col items-center justify-center rounded-xl bg-white px-6 py-10 text-black sm:px-10",
       )}
     >
       <div className="flex flex-col">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 // import { cn } from "~/lib/utils";
-import { UserAuthForm } from "../_components/UserAuthForm";
+import { UserAuthForm } from "../../components/UserAuthForm";
 
 export const metadata: Metadata = {
   title: "Authentication",

@@ -15,7 +15,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 export const metadata = {
   title: "Locked In 🔒",
   description: "An app to track how long you stay locked in.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "./favicon.ico" }],
 };
 
 export default function RootLayout({
