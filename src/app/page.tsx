@@ -1,34 +1,25 @@
-import Link from "next/link";
+"use client";
 
-// import { CreatePost } from "~/app/_components/create-post";
-// import { getServerAuthSession } from "~/server/auth";
-// import { api } from "~/trpc/server";
+import React from "react";
+import BoxesContainer from "~/components/welcome/BoxesContainer";
+import { twMerge } from "tailwind-merge";
 
-export default async function Home() {
-  // const session = await getServerAuthSession();
-
+export default function BackgroundBoxesPreview() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <Link href={"/login"}>Get Started</Link>
-    </main>
+    <div className="min-h-screen relative flex h-96 w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-black">
+      <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-black [mask-image:radial-gradient(transparent,white)]" />
+
+      <BoxesContainer />
+      <h1
+        className={twMerge(
+          "relative z-20 !m-0 !p-0 text-xl text-white md:text-4xl",
+        )}
+      >
+        Tailwind is Awesome
+      </h1>
+      <p className="relative z-20 mt-2 text-center text-neutral-300">
+        Framer motion is the best animation library ngl
+      </p>
+    </div>
   );
 }
-
-// async function CrudShowcase() {
-//   const session = await getServerAuthSession();
-//   if (!session?.user) return null;
-
-//   const latestPost = await api.post.getLatest.query();
-
-//   return (
-//     <div className="w-full max-w-xs">
-//       {latestPost ? (
-//         <p className="truncate">Your most recent post: {latestPost.name}</p>
-//       ) : (
-//         <p>You have no posts yet.</p>
-//       )}
-
-//       <CreatePost />
-//     </div>
-//   );
-// }
