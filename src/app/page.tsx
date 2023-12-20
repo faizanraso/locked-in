@@ -1,25 +1,22 @@
 "use client";
 
 import React from "react";
-import BoxesContainer from "~/components/welcome/BoxesContainer";
-import { twMerge } from "tailwind-merge";
+import { BackgroundSVG } from "~/components/welcome/BackgroundBeams";
 
 export default function BackgroundBoxesPreview() {
   return (
-    <div className="min-h-screen relative flex h-96 w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-black">
-      <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-black [mask-image:radial-gradient(transparent,white)]" />
-
-      <BoxesContainer />
-      <h1
-        className={twMerge(
-          "relative z-20 !m-0 !p-0 text-xl text-white md:text-4xl",
-        )}
-      >
-        Tailwind is Awesome
-      </h1>
-      <p className="relative z-20 mt-2 text-center text-neutral-300">
-        Framer motion is the best animation library ngl
-      </p>
+    <div className="relative flex h-screen flex-col items-center justify-center bg-neutral-950 antialiased">
+      <div className="mx-auto max-w-2xl p-4">
+        <div className="flex flex-row items-center justify-center gap-x-3 text-center">
+          <h1 className="relative z-10 text-center text-4xl font-bold text-neutral-400 md:text-7xl">
+            Locked In 🔒
+          </h1>
+        </div>
+        <p className="relative z-10 mx-auto my-2 max-w-lg text-center text-sm text-neutral-500">
+          track the time you stay "locked in"
+        </p>
+      </div>
+      <BackgroundSVG />
     </div>
   );
 }
