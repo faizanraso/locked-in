@@ -9,7 +9,7 @@ export default function Header({
   return (
     <header
       className={cn(
-        "flex items-center justify-between px-10 py-4 lg:space-x-6 border-b border-zinc-800",
+        "flex items-center justify-between border-b border-zinc-800 px-10 py-4 lg:space-x-6",
         className,
       )}
       {...props}
