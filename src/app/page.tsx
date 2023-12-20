@@ -10,17 +10,17 @@ export default function BackgroundBoxesPreview() {
   return (
     <div className="relative flex h-screen flex-col items-center justify-center bg-neutral-950 antialiased">
       <Link
-        href="/examples/authentication"
+        href="/login"
         className={cn(
           buttonVariants({ variant: "hover" }),
-          "absolute right-4 top-4 z-10 md:right-8 md:top-8 border border-neutral-400 hover:bg-neutral-300",
+          "absolute right-4 top-4 z-10 border border-neutral-400 hover:bg-neutral-300 md:right-8 md:top-8",
         )}
       >
         Get Started
       </Link>
       <div className="mx-auto max-w-2xl p-4">
         <div className="flex flex-row items-center justify-center gap-x-3 text-center">
-          <h1 className="relative z-10 text-center text-3xl font-bold text-neutral-400 sm:text-5xl md:text-7xl">
+          <h1 className="relative z-10 text-center text-3xl font-bole text-neutral-400 sm:text-5xl md:text-7xl">
             Locked In 🔒
           </h1>
         </div>
