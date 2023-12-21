@@ -19,28 +19,37 @@ export function UserAuthForm() {
   return (
     <div
       className={cn(
-        "relative z-10 m-auto h-fit w-[475px] flex-col items-center justify-center rounded-xl bg-white px-6 py-10 text-black sm:px-10",
+        "relative z-10 m-auto h-fit w-[475px] flex-col items-center justify-center rounded-xl border border-neutral-800 bg-black px-6 py-10 text-black sm:px-10",
       )}
     >
       <div className="flex flex-col">
         <div className="py-3">
           <p className="text-xl">
-            🔒 <span className="font-bold italic">locked in</span>
+            🔒{" "}
+            <span className="font-bold italic text-neutral-200">locked in</span>
           </p>
         </div>
         <div className="py-3 text-center">
-          <p className="text-xs font-medium text-gray-400">
+          <p className="text-xs font-medium text-neutral-400">
             Continue to Locked In
           </p>
         </div>
       </div>
 
       <div className="flex w-full flex-col gap-y-3 pb-6 pt-3">
-        <Button variant="outline" type="button" onClick={signInWithGithub}>
+        <Button
+          className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 hover:bg-neutral-800"
+          type="button"
+          onClick={signInWithGithub}
+        >
           <Icons.gitHub className="mr-2 h-4 w-4" />
           Continue With Github
         </Button>
-        <Button variant="outline" type="button" onClick={signInWithGoogle}>
+        <Button
+          className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 hover:bg-neutral-800"
+          type="button"
+          onClick={signInWithGoogle}
+        >
           <Icons.google className="mr-2 h-4 w-4" />
           Continue With Google
         </Button>
@@ -49,19 +58,19 @@ export function UserAuthForm() {
       <div className="absolute bottom-0 flex flex-row gap-x-3 py-3">
         <span
           onClick={() => alert("test")}
-          className="cursor-pointer text-xs font-medium text-gray-500 transition duration-150 hover:underline"
+          className="cursor-pointer text-xs font-medium text-neutral-500 transition duration-150 hover:underline"
         >
           Help
         </span>
         <span
           onClick={() => alert("test")}
-          className="cursor-pointer text-xs font-medium text-gray-500 transition duration-150 hover:underline"
+          className="cursor-pointer text-xs font-medium text-neutral-500 transition duration-150 hover:underline"
         >
           Privacy
         </span>
         <span
           onClick={() => alert("test")}
-          className="cursor-pointer text-xs font-medium text-gray-500 transition duration-150 hover:underline"
+          className="cursor-pointer text-xs font-medium text-neutral-500 transition duration-150 hover:underline"
         >
           Terms
         </span>

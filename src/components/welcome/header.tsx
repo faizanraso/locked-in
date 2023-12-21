@@ -11,7 +11,7 @@ export default function Header({
   return (
     <header
       className={cn(
-        "flex items-center justify-between border-b border-zinc-800 px-10 py-4 lg:space-x-6",
+        "flex items-center justify-between border-b border-neutral-800 px-10 py-4 lg:space-x-6",
         className,
       )}
       {...props}
@@ -23,9 +23,9 @@ export default function Header({
       </div>
       <div className="flex flex-row items-center justify-center gap-x-2">
         <Link href={"https://github.com/faizanraso/locked-in"}>
-          <div className="flex rounded-lg p-2 hover:bg-neutral-800">
+          <Button className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 hover:bg-neutral-800">
             <Icons.gitHub className="h-6" />
-          </div>
+          </Button>
         </Link>
         <Link href={"/login"}>
           {" "}
