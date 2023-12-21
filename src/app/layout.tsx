@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { TRPCReactProvider } from "~/trpc/react";
 
 const inter = Inter({ subsets: ["latin"] });
+const geist = GeistSans;
 
 export const metadata = {
   title: "Locked In 🔒",
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body className={`${geist.className}`}>
         <TRPCReactProvider cookies={cookies().toString()}>
           {children}
           <SpeedInsights />
