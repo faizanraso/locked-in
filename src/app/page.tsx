@@ -1,35 +1,23 @@
+"use client";
+
 import Link from "next/link";
+import React from "react";
+import Header from "~/components/welcome/header";
+import { cn } from "~/lib/utils";
 
-// import { CreatePost } from "~/app/_components/create-post";
-// import { getServerAuthSession } from "~/server/auth";
-// import { api } from "~/trpc/server";
-
-export default async function Home() {
-  // const session = await getServerAuthSession();
-
+export default function BackgroundBoxesPreview() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#fafafa] text-black dark:bg-black dark:text-white">
-      <Link href={"/login"}>Login</Link>
-      <Link href={"/register"}>Create an Account</Link>
-    </main>
+    <>
+      <Header />
+      <main className="flex min-h-screen justify-center">
+        <div className="py-28">
+          <div className="flex px-10">
+            <h1 className="inline-block bg-gradient-to-b from-neutral-200 via-zinc-300 to-stone-500 bg-clip-text text-center text-4xl font-bold text-transparent">
+              A Better Way to Track Your Time.
+            </h1>
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
-
-// async function CrudShowcase() {
-//   const session = await getServerAuthSession();
-//   if (!session?.user) return null;
-
-//   const latestPost = await api.post.getLatest.query();
-
-//   return (
-//     <div className="w-full max-w-xs">
-//       {latestPost ? (
-//         <p className="truncate">Your most recent post: {latestPost.name}</p>
-//       ) : (
-//         <p>You have no posts yet.</p>
-//       )}
-
-//       <CreatePost />
-//     </div>
-//   );
-// }
