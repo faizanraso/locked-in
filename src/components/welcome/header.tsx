@@ -18,8 +18,8 @@ export default function Header({
     >
       <div className="">
         <Link href="/">
-          <h1 className="font-mono text-lg font-semibold text-neutral-200">
-            🔒 locked-in
+          <h1 className="text-xl font-semibold text-neutral-200">
+            🔒 <span className="italic">locked-in</span>
           </h1>
         </Link>
       </div>

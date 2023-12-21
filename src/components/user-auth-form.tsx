@@ -24,11 +24,8 @@ export function UserAuthForm() {
     >
       <div className="flex flex-col">
         <div className="py-3">
-          <p className="text-xl">
-            🔒{" "}
-            <span className="font-mono font-semibold text-neutral-200">
-              locked in
-            </span>
+          <p className="text-xl font-semibold text-neutral-200">
+            🔒 <span className="italic">locked-in</span>
           </p>
         </div>
         <div className="py-3 text-center">
