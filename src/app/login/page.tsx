@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function LoginPage() {
   const data = await getServerAuthSession();
 
-  if (data?.user) redirect("/home");
+  if (data?.user) redirect("/dashboard");
 
   return (
     <main className="absolute flex min-h-screen w-screen items-center justify-center overflow-hidden bg-black">
