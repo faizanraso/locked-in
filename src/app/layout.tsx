@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 const geist = GeistSans;
 
 export const metadata = {
-  title: "Locked In 🔒",
+  title: "locked-in",
   description: "An app to track how long you stay locked in.",
   icons: [{ rel: "icon", url: "./favicon.ico" }],
 };
