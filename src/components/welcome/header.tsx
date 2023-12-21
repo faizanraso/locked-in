@@ -18,7 +18,9 @@ export default function Header({
     >
       <div className="">
         <Link href="/">
-          <h1 className="font-mono text-lg font-semibold">🔒 locked-in</h1>
+          <h1 className="font-mono text-lg font-semibold text-neutral-200">
+            🔒 locked-in
+          </h1>
         </Link>
       </div>
       <div className="flex flex-row items-center justify-center gap-x-2">

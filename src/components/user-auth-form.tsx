@@ -26,7 +26,9 @@ export function UserAuthForm() {
         <div className="py-3">
           <p className="text-xl">
             🔒{" "}
-            <span className="font-bold italic text-neutral-200">locked in</span>
+            <span className="font-mono font-semibold text-neutral-200">
+              locked in
+            </span>
           </p>
         </div>
         <div className="py-3 text-center">
@@ -58,19 +60,19 @@ export function UserAuthForm() {
       <div className="absolute bottom-0 flex flex-row gap-x-3 py-3">
         <span
           onClick={() => alert("test")}
-          className="cursor-pointer text-xs font-medium text-neutral-500 transition duration-150 hover:underline"
+          className="cursor-pointer text-xs font-medium text-neutral-400 transition duration-150 hover:underline"
         >
           Help
         </span>
         <span
           onClick={() => alert("test")}
-          className="cursor-pointer text-xs font-medium text-neutral-500 transition duration-150 hover:underline"
+          className="cursor-pointer text-xs font-medium text-neutral-400 transition duration-150 hover:underline"
         >
           Privacy
         </span>
         <span
           onClick={() => alert("test")}
-          className="cursor-pointer text-xs font-medium text-neutral-500 transition duration-150 hover:underline"
+          className="cursor-pointer text-xs font-medium text-neutral-400 transition duration-150 hover:underline"
         >
           Terms
         </span>
