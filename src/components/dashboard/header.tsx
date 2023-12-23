@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
 
 export default function Header() {
-  const currentPage: string = "dashboard";
+  const currentPage = usePathname();
 
   return (
     <header className="flex items-center justify-between border-b border-neutral-800 px-10 py-4 lg:space-x-6">
@@ -13,8 +16,8 @@ export default function Header() {
             href="/dashboard"
             className={cn(
               "text-sm font-medium transition-colors",
-              currentPage === "dashboard"
-                ? "text-blue-500"
+              currentPage.includes("/dashboard")
+                ? "text-sky-600"
                 : "text-muted-foreground hover:text-neutral-100",
             )}
           >
@@ -24,8 +27,8 @@ export default function Header() {
             href="/lock-in"
             className={cn(
               "text-sm font-medium transition-colors",
-              currentPage === "lock-in"
-                ? "text-blue-500"
+              currentPage.includes("/lock-in")
+                ? "text-sky-600"
                 : "text-muted-foreground hover:text-neutral-100",
             )}
           >
@@ -35,8 +38,8 @@ export default function Header() {
             href="/settings"
             className={cn(
               "text-sm font-medium transition-colors",
-              currentPage === "settings"
-                ? "text-blue-500"
+              currentPage.includes("/settings")
+                ? "text-sky-600"
                 : "text-muted-foreground hover:text-neutral-100",
             )}
           >
