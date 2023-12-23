@@ -23,16 +23,16 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="default" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage alt="@user" />
-            <AvatarFallback>{}</AvatarFallback>
+            <AvatarImage alt="@user"/>
+            <AvatarFallback>{session.user.name?.split("")[0]}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{}</p>
-            <p className="text-xs leading-none text-muted-foreground">{}</p>
+            <p className="text-sm font-medium leading-none">{session.user.name}</p>
+            <p className="text-xs leading-none text-muted-foreground">{session.user.email}</p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
