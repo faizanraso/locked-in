@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import AppThemeProvider from "~/styles/theme-provider";
+import AppProviders from "~/lib/providers";
 
 // const inter = Inter({ subsets: ["latin"] });
 const geist = GeistSans;
@@ -24,12 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geist.className}`}>
-        <AppThemeProvider>
+        <AppProviders>
           <TRPCReactProvider cookies={cookies().toString()}>
             {children}
             <SpeedInsights />
           </TRPCReactProvider>
-        </AppThemeProvider>
+        </AppProviders>
       </body>
     </html>
   );
