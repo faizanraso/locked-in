@@ -25,8 +25,8 @@ export default function Header({
       </div>
       <div className="flex flex-row items-center justify-center gap-x-2">
         <Link href={"https://github.com/faizanraso/locked-in"}>
-          <Button className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 hover:bg-neutral-800">
-            <Icons.gitHub className="h-6" />
+          <Button className="flex gap-x-2 rounded-lg bg-black p-2 hover:bg-neutral-800">
+            <Icons.gitHub className="h-6 text-neutral-200" />
           </Button>
         </Link>
         <Link href={"/login"}>
