@@ -9,11 +9,15 @@ import { cn } from "~/lib/utils";
 
 export function UserAuthForm() {
   async function signInWithGithub() {
-    await signIn("github", { callbackUrl: window.location.origin });
+    await signIn("github", {
+      callbackUrl: `${window.location.origin}/dashboard`,
+    });
   }
 
   async function signInWithGoogle() {
-    await signIn("google", { callbackUrl: window.location.origin });
+    await signIn("google", {
+      callbackUrl: `${window.location.origin}/dashboard`,
+    });
   }
 
   return (
@@ -37,7 +41,7 @@ export function UserAuthForm() {
 
       <div className="flex w-full flex-col gap-y-3 pb-6 pt-3">
         <Button
-          className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 hover:bg-neutral-800"
+          className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 text-neutral-200 hover:bg-neutral-800"
           type="button"
           onClick={signInWithGithub}
         >
@@ -45,7 +49,7 @@ export function UserAuthForm() {
           Continue With Github
         </Button>
         <Button
-          className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 hover:bg-neutral-800"
+          className="flex gap-x-2 rounded-lg border border-neutral-800 bg-black p-2 text-neutral-200 hover:bg-neutral-800"
           type="button"
           onClick={signInWithGoogle}
         >
