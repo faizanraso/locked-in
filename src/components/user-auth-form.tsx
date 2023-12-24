@@ -9,11 +9,15 @@ import { cn } from "~/lib/utils";
 
 export function UserAuthForm() {
   async function signInWithGithub() {
-    await signIn("github", { callbackUrl: window.location.origin });
+    await signIn("github", {
+      callbackUrl: `${window.location.origin}/dashboard`,
+    });
   }
 
   async function signInWithGoogle() {
-    await signIn("google", { callbackUrl: window.location.origin });
+    await signIn("google", {
+      callbackUrl: `${window.location.origin}/dashboard`,
+    });
   }
 
   return (

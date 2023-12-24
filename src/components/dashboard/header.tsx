@@ -5,6 +5,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
 import { UserNav } from "./usernav";
+import Image from "next/image";
 
 export default function Header() {
   const currentPage = usePathname();
@@ -36,21 +37,10 @@ export default function Header() {
             >
               Lock-In
             </Link>
-            <Link
-              href="/settings"
-              className={cn(
-                "text-sm font-medium transition-colors",
-                currentPage.includes("/settings")
-                  ? "text-sky-600"
-                  : "text-muted-foreground hover:text-neutral-100",
-              )}
-            >
-              Settings
-            </Link>
           </div>
         </nav>
       </div>
-      <div className="">
+      <div className="flex items-center justify-center">
         <UserNav />
       </div>
     </header>
