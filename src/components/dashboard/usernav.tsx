@@ -1,3 +1,4 @@
+import { Session } from "next-auth";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import {
@@ -11,11 +12,11 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 
-import { useSession } from "next-auth/react";
+interface UserNavProps {
+  session: Session | null;
+}
 
-export function UserNav() {
-  const { data: session, status } = useSession();
-
+export function UserNav({ session }: UserNavProps) {
   if (!session) return;
 
   return (
@@ -24,7 +25,7 @@ export function UserNav() {
         <Button variant="default" className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10">
             <AvatarImage src="/public/pfp.png" alt="user" />
-            <AvatarFallback className="bg-gradient-to-bl from-green-300 via-blue-500 to-purple-600"></AvatarFallback>
+            <AvatarFallback className="bg-gradient-to-bl from-green-400 via-sky-500 to-purple-600"></AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
