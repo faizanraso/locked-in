@@ -14,6 +14,17 @@ export default function Header() {
   const { data: session, status } = useSession();
   const currentPage = usePathname();
 
+  const navItems = [
+    {
+      path: "/dashboard",
+      name: "Dashboard",
+    },
+    {
+      path: "/lock-in",
+      name: "Lock-In",
+    },
+  ];
+
   return (
     <header className="flex flex-col border-b border-neutral-800 px-7 pb-2 pt-4">
       <div className="flex w-full flex-row items-center justify-between">
@@ -41,28 +52,19 @@ export default function Header() {
       <div>
         <nav className={cn("flex w-full pt-2")}>
           <div className="items-center space-x-5">
-            <Link
-              href="/dashboard"
-              className={cn(
-                "text-sm font-medium transition-colors",
-                currentPage.includes("/dashboard")
-                  ? "text-sky-600"
-                  : "text-muted-foreground hover:text-neutral-100",
-              )}
-            >
-              Dashboard
-            </Link>
-            <Link
-              href="/lock-in"
-              className={cn(
-                "text-sm font-medium transition-colors",
-                currentPage.includes("/lock-in")
-                  ? "text-sky-600"
-                  : "text-muted-foreground hover:text-neutral-100",
-              )}
-            >
-              Lock-In
-            </Link>
+            {navItems.map((page) => (
+              <Link
+                href={page.path}
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  currentPage.includes(page.path)
+                    ? "text-sky-600"
+                    : "text-muted-foreground hover:text-neutral-100",
+                )}
+              >
+                {page.name}
+              </Link>
+            ))}
           </div>
         </nav>
       </div>
