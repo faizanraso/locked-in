@@ -59,13 +59,13 @@ export function Overview() {
       <BarChart data={data}>
         <XAxis
           dataKey="name"
-          stroke="#888888"
+          stroke="#a3a3a3"
           fontSize={12}
           tickLine={false}
           axisLine={false}
         />
         <YAxis
-          stroke="#888888"
+          stroke="#a3a3a3"
           fontSize={12}
           tickLine={false}
           axisLine={false}
@@ -73,9 +73,9 @@ export function Overview() {
         />
         <Bar
           dataKey="total"
-          fill="currentColor"
+          fill="#e5e5e5"
           radius={[4, 4, 0, 0]}
-          className="fill-primary"
+          className=""
         />
       </BarChart>
     </ResponsiveContainer>
