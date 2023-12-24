@@ -10,20 +10,20 @@ import { useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
 
+const navItems = [
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+  },
+  {
+    path: "/lock-in",
+    name: "Lock-In",
+  },
+];
+
 export default function Header() {
   const { data: session, status } = useSession();
-  const currentPage = usePathname();
-
-  const navItems = [
-    {
-      path: "/dashboard",
-      name: "Dashboard",
-    },
-    {
-      path: "/lock-in",
-      name: "Lock-In",
-    },
-  ];
+  const currentPage = usePathname() || "/dashboard";
 
   return (
     <header className="flex flex-col border-b border-neutral-800 px-7 pb-2 pt-4">
@@ -51,14 +51,15 @@ export default function Header() {
       </div>
       <div>
         <nav className={cn("flex w-full pt-2")}>
-          <div className="items-center space-x-5">
+          <div className="items-center space-x-2">
             {navItems.map((page) => (
               <Link
                 href={page.path}
+                key={page.path}
                 className={cn(
-                  "text-sm font-medium transition-colors",
+                  "rounded-lg p-2 text-sm font-medium transition-colors hover:bg-zinc-800",
                   currentPage.includes(page.path)
-                    ? "text-sky-600"
+                    ? "text-neutral-100"
                     : "text-muted-foreground hover:text-neutral-100",
                 )}
               >
