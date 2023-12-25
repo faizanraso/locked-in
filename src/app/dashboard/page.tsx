@@ -1,5 +1,6 @@
 import React from "react";
 import { Overview } from "~/components/dashboard/graph";
+import Footer from "~/components/shared/footer";
 import Header from "~/components/shared/header";
 import { Button } from "~/components/ui/button";
 import {
@@ -153,6 +154,7 @@ export default function HomePage() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
