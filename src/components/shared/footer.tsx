@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer aria-label="Site Footer">
-      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-neutral-800 px-8 py-6 text-center">
+    <footer aria-label="Site Footer" className="mt-16">
+      <div className="flex items-center justify-between border-t border-neutral-800 px-8 py-6 text-center">
         <p className="text-xs text-neutral-400">Made by Faizan Rasool</p>
         <div>
           <ul className="mt-8 flex justify-center gap-3 sm:mt-0 lg:justify-end">
