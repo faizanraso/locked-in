@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import CategoryList from "./category-list";
 
 export default function ComponentsGrid() {
   return (
@@ -205,12 +206,14 @@ export default function ComponentsGrid() {
         </Card>
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle className="text-neutral-200">Recent Sales</CardTitle>
+            <CardTitle className="text-neutral-200">Breakdown</CardTitle>
             <CardDescription className="text-neutral-400">
-              You made 265 sales this month.
+              Some interesting description here
             </CardDescription>
           </CardHeader>
-          <CardContent>{/* <RecentSales /> */}</CardContent>
+          <CardContent>
+            <CategoryList />
+          </CardContent>
         </Card>
       </div>
     </>
