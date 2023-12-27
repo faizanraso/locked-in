@@ -196,7 +196,7 @@ export default function ComponentsGrid() {
         </Card>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+        <Card className="col-span-7 lg:col-span-4">
           <CardHeader>
             <CardTitle className="text-neutral-200">Overview</CardTitle>
           </CardHeader>
@@ -204,14 +204,14 @@ export default function ComponentsGrid() {
             <Overview />
           </CardContent>
         </Card>
-        <Card className="col-span-3">
+        <Card className="col-span-7 lg:col-span-3">
           <CardHeader>
             <CardTitle className="text-neutral-200">Breakdown</CardTitle>
             <CardDescription className="text-neutral-400">
               Some interesting description here
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="">
             <CategoryList />
           </CardContent>
         </Card>

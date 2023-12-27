@@ -11,7 +11,7 @@ import AppProviders from "~/lib/providers";
 const geist = GeistSans;
 
 export const metadata = {
-  title: "locked-in",
+  title: "Locked-In",
   description: "An app to track how long you stay locked in.",
   icons: [{ rel: "icon", url: "./favicon.ico" }],
 };

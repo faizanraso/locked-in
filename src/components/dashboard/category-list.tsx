@@ -15,7 +15,7 @@ export default function CategoryList() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 overflow-auto">
       {data
         .sort((a, b) => {
           return b.totalTime - a.totalTime; // sort in desc order
