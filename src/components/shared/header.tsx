@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header className="flex flex-col border-b border-neutral-800 px-7 pb-2 pt-4">
       <div className="flex w-full flex-row items-center justify-between">
-        <div className="flex flex-row items-center justify-center gap-x-3">
+        <div className="flex flex-row items-center justify-center gap-x-3 px-1">
           <Link href="/dashboard" className="">
             <h1 className="inline text-lg">
               🔒 <span className="italic text-neutral-400">/</span>
