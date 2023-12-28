@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geist.className} min-h-screen`}>
+      <body className={`${geist.className}`}>
         <AppProviders>
           <TRPCReactProvider cookies={cookies().toString()}>
             {children}
