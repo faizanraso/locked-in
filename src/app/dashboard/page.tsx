@@ -1,9 +1,21 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 import ComponentsGrid from "~/components/dashboard/components-grid";
 import Footer from "~/components/shared/footer";
 import Header from "~/components/shared/header";
+import { api } from "~/trpc/react";
 
 export default function HomePage() {
+  const router = useRouter();
+
+  const test = api.userData.create.useMutation({
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
+
   return (
     <>
       <Header />
@@ -15,6 +27,15 @@ export default function HomePage() {
             </h2>
           </div>
           <ComponentsGrid />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              test.mutate({ categoryName: "test" });
+            }}
+            className="bg-white p-5 text-black"
+          >
+            TEST
+          </button>
         </div>
       </main>
       <Footer />

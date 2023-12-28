@@ -16,22 +16,22 @@ export const userDataRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(z.object({ name: z.string().min(1) }))
+    .input(z.object({ categoryName: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.post.create({
+      return ctx.db.userLISessions.create({
         data: {
-          name: input.name,
-          createdBy: { connect: { id: ctx.session.user.id } },
+          categoryName: input.categoryName,
+          user: { connect: { id: ctx.session.user.id } },
         },
       });
     }),
 
-  getLatest: protectedProcedure.query(({ ctx }) => {
-    return ctx.db.post.findFirst({
-      orderBy: { createdAt: "desc" },
-      where: { createdBy: { id: ctx.session.user.id } },
-    });
-  }),
+  //   getLatest: protectedProcedure.query(({ ctx }) => {
+  //     return ctx.db.post.findFirst({
+  //       orderBy: { createdAt: "desc" },
+  //       where: { createdBy: { id: ctx.session.user.id } },
+  //     });
+  //   }),
 
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";
