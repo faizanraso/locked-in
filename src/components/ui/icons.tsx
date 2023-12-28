@@ -145,4 +145,116 @@ export const Icons = {
       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
   ),
+  clock: (props: IconProps) => (
+    <svg
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M12 6L12 12L18 12"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+    </svg>
+  ),
+  hash: (props: IconProps) => (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M10 3L6 21"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>
+      <path
+        d="M20.5 16H2.5"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>
+      <path
+        d="M22 7H4"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>
+      <path
+        d="M18 3L14 21"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>
+    </svg>
+  ),
+  list: (props: IconProps) => (
+    <svg
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M8 6L20 6"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        d="M4 6.01L4.01 5.99889"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        d="M4 12.01L4.01 11.9989"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        d="M4 18.01L4.01 17.9989"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        d="M8 12L20 12"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        d="M8 18L20 18"
+        stroke="#a3a3a3"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+    </svg>
+  ),
 };
