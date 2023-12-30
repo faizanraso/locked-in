@@ -10,8 +10,12 @@ import {
 } from "~/components/ui/card";
 import CategoryList from "./category-list";
 import { Icons } from "../ui/icons";
+import { api } from "~/trpc/react";
 
 export default function ComponentsGrid() {
+
+  const userData = api.userData
+
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

@@ -26,6 +26,12 @@ export const userDataRouter = createTRPCRouter({
       });
     }),
 
+  getDashboardData: protectedProcedure.query(({ ctx }) => {
+    return ctx.db.userLISessions.findFirst({
+      where: { user: { id: ctx.session.user.id } },
+    });
+  }),
+
   //   getLatest: protectedProcedure.query(({ ctx }) => {
   //     return ctx.db.post.findFirst({
   //       orderBy: { createdAt: "desc" },

@@ -27,7 +27,7 @@ export default function HomePage() {
             </h2>
           </div>
           <ComponentsGrid />
-          <button
+          {/* <button
             onClick={(e) => {
               e.preventDefault();
               test.mutate({ categoryName: "test" });
@@ -35,7 +35,7 @@ export default function HomePage() {
             className="bg-white p-5 text-black"
           >
             TEST
-          </button>
+          </button> */}
         </div>
       </main>
       <Footer />
