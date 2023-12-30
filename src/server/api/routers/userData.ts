@@ -18,7 +18,7 @@ export const userDataRouter = createTRPCRouter({
   create: protectedProcedure
     .input(z.object({ categoryName: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.userLISessions.create({
+      return ctx.db.userLISession.create({
         data: {
           categoryName: input.categoryName,
           user: { connect: { id: ctx.session.user.id } },
@@ -26,11 +26,11 @@ export const userDataRouter = createTRPCRouter({
       });
     }),
 
-  getDashboardData: protectedProcedure.query(({ ctx }) => {
-    return ctx.db.userLISessions.findFirst({
-      where: { user: { id: ctx.session.user.id } },
-    });
-  }),
+  getDashboardData: protectedProcedure
+    // .input(z.object({ id: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.db.user.findFirst({ where: { id: ctx.session.user.id } });
+    }),
 
   //   getLatest: protectedProcedure.query(({ ctx }) => {
   //     return ctx.db.post.findFirst({

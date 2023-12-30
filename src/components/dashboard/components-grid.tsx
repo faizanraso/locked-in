@@ -1,6 +1,11 @@
 import React from "react";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 import { Overview } from "~/components/dashboard/graph";
+import CategoryList from "./category-list";
+import { Icons } from "../ui/icons";
+import { api } from "~/trpc/react";
 import {
   Card,
   CardContent,
@@ -8,13 +13,14 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import CategoryList from "./category-list";
-import { Icons } from "../ui/icons";
-import { api } from "~/trpc/react";
 
 export default function ComponentsGrid() {
+  const { data, status } = useSession();
 
-  const userData = api.userData
+  const { isLoading, data: userData } =
+    api.userData.getDashboardData.useQuery();
+
+  if (data) console.log(data);
 
   return (
     <>
@@ -27,7 +33,9 @@ export default function ComponentsGrid() {
             <Icons.clock className="h-4 w-4 text-muted-foreground text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neutral-200">123 Hours</div>
+            <div className="text-2xl font-bold text-neutral-200">
+              {userData?.totalTimeLockedIn}
+            </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +25 hours in the past week
             </p> */}
@@ -42,7 +50,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              54 minutes
+              {userData?.avgSessionLength}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +10 min in the past week
@@ -57,7 +65,9 @@ export default function ComponentsGrid() {
             <Icons.hash className="h-4 w-4 text-muted-foreground text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neutral-200">52</div>
+            <div className="text-2xl font-bold text-neutral-200">
+              {userData?.totalSessions}
+            </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +3 in the past week
             </p> */}
@@ -71,7 +81,9 @@ export default function ComponentsGrid() {
             <Icons.list className="h-4 w-4 text-muted-foreground text-neutral-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neutral-200">4</div>
+            <div className="text-2xl font-bold text-neutral-200">
+              {userData?.categoriesTracked}
+            </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +1 new category in the past week
             </p> */}
