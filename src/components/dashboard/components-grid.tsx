@@ -1,6 +1,5 @@
 import React from "react";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 
 import { Overview } from "~/components/dashboard/graph";
 import CategoryList from "./category-list";
@@ -15,12 +14,10 @@ import {
 } from "~/components/ui/card";
 
 export default function ComponentsGrid() {
-  const { data, status } = useSession();
+
 
   const { isLoading, data: userData } =
     api.userData.getDashboardData.useQuery();
-
-  if (data) console.log(data);
 
   return (
     <>

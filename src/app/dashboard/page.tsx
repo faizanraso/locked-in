@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { redirect, useRouter } from "next/navigation";
 import React from "react";
 import ComponentsGrid from "~/components/dashboard/components-grid";
 import Footer from "~/components/shared/footer";
@@ -8,13 +9,17 @@ import Header from "~/components/shared/header";
 import { api } from "~/trpc/react";
 
 export default function HomePage() {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const test = api.userData.create.useMutation({
-    onSuccess: () => {
-      router.refresh();
-    },
-  });
+  // const test = api.userData.create.useMutation({
+  //   onSuccess: () => {
+  //     router.refresh();
+  //   },
+  // });
+
+  const { data, status } = useSession();
+
+  if (status === "unauthenticated") redirect("/");
 
   return (
     <>
