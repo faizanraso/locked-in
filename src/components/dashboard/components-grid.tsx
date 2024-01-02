@@ -11,6 +11,13 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import { Button } from "../ui/button";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  DoubleArrowLeftIcon,
+  DoubleArrowRightIcon,
+} from "@radix-ui/react-icons";
 
 export default function ComponentsGrid() {
   const { isLoading, data: userData } =
@@ -93,15 +100,33 @@ export default function ComponentsGrid() {
             <Overview />
           </CardContent>
         </Card>
-        <Card className="col-span-7 h-full lg:col-span-3">
+        <Card className="flex flex-col col-span-7 lg:col-span-3 h-full">
           <CardHeader>
             <CardTitle className="text-neutral-200">Breakdown</CardTitle>
             <CardDescription className="text-neutral-400">
               Some interesting description here
             </CardDescription>
           </CardHeader>
-          <CardContent className="overflow-y-auto">
+          <CardContent className="flex flex-col justify-between h-full">
             <CategoryList />
+            <div className="flex flex-row items-center justify-center space-x-2 ">
+              <Button
+                variant="outline"
+                className="h-8 w-8 p-0"
+                //   onClick={() => table.previousPage()}
+                //   disabled={!table.getCanPreviousPage()}
+              >
+                <ChevronLeftIcon className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                className="h-8 w-8 p-0"
+                //   onClick={() => table.nextPage()}
+                //   disabled={!table.getCanNextPage()}
+              >
+                <ChevronRightIcon className="h-4 w-4" />
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
