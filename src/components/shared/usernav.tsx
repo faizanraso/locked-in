@@ -17,14 +17,23 @@ interface UserNavProps {
 }
 
 export function UserNav({ session }: UserNavProps) {
-  if (!session) return;
+  if (!session)
+    return (
+      <Avatar className="h-9 w-9">
+        <AvatarImage
+          className="bg-gradient-to-bl from-green-400 via-sky-500 to-purple-600"
+          alt="user"
+        />
+        <AvatarFallback className="bg-gradient-to-bl from-green-400 via-sky-500 to-purple-600"></AvatarFallback>
+      </Avatar>
+    );
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="default" className="relative h-9 w-9 rounded-full">
           <Avatar className="h-9 w-9">
-            <AvatarImage src="/public/pfp.png" alt="user" />
+            <AvatarImage alt="user" />
             <AvatarFallback className="bg-gradient-to-bl from-green-400 via-sky-500 to-purple-600"></AvatarFallback>
           </Avatar>
         </Button>

@@ -1,10 +1,9 @@
 import React from "react";
-import { useSession } from "next-auth/react";
+import { api } from "~/trpc/react";
 
 import { Overview } from "~/components/dashboard/graph";
 import CategoryList from "./category-list";
 import { Icons } from "../ui/icons";
-import { api } from "~/trpc/react";
 import {
   Card,
   CardContent,
@@ -14,8 +13,6 @@ import {
 } from "~/components/ui/card";
 
 export default function ComponentsGrid() {
-
-
   const { isLoading, data: userData } =
     api.userData.getDashboardData.useQuery();
 
@@ -31,7 +28,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {userData?.totalTimeLockedIn}
+              {isLoading ? 0 : userData?.totalTimeLockedIn}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +25 hours in the past week
@@ -47,7 +44,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {userData?.avgSessionLength}
+              {isLoading ? 0 : userData?.avgSessionLength}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +10 min in the past week
@@ -63,7 +60,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {userData?.totalSessions}
+              {isLoading ? 0 : userData?.totalSessions}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +3 in the past week
@@ -79,7 +76,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {userData?.categoriesTracked}
+              {isLoading ? 0 : userData?.categoriesTracked}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +1 new category in the past week
