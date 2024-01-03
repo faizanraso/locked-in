@@ -31,12 +31,12 @@ export default function CategoryList() {
 
   return (
     <div className="flex h-full flex-col justify-between">
-      <div className="space-y-8">
+      <div className="space-y-7">
         {data
           .sort((a, b) => {
             return b.hoursTracked - a.hoursTracked; // sort in desc order
           })
-          .slice(breakdownPage * 5, breakdownPage * 5 + 6)
+          .slice(breakdownPage * 6, breakdownPage * 6 + 6)
           .map((item) => (
             <div className="flex items-center" key={item.categoryName}>
               <div className="space-y-1">
