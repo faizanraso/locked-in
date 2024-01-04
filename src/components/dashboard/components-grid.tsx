@@ -11,13 +11,14 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function ComponentsGrid() {
   const { isLoading, data: userData } =
     api.userData.getDashboardData.useQuery();
 
   return (
-    <>
+    <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -28,7 +29,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? 0 : userData?.totalTimeLockedIn}
+              {isLoading ? <Skeleton /> : userData?.totalTimeLockedIn}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +25 hours in the past week
@@ -44,7 +45,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? 0 : userData?.avgSessionLength}
+              {isLoading ? <Skeleton /> : userData?.avgSessionLength}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +10 min in the past week
@@ -60,7 +61,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? 0 : userData?.totalSessions}
+              {isLoading ? <Skeleton /> : userData?.totalSessions}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +3 in the past week
@@ -76,7 +77,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? 0 : userData?.categoriesTracked.length}
+              {isLoading ? <Skeleton /> : userData?.categoriesTracked.length}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +1 new category in the past week
@@ -105,6 +106,6 @@ export default function ComponentsGrid() {
           </CardContent>
         </Card>
       </div>
-    </>
+    </SkeletonTheme>
   );
 }
