@@ -1,7 +1,7 @@
 import React from "react";
 import { api } from "~/trpc/react";
 
-import { Overview } from "~/components/dashboard/graph";
+import { CurrentWeekOverview } from "~/components/dashboard/current-week-overview";
 import CategoryList from "./category-list";
 import { Icons } from "../ui/icons";
 import {
@@ -12,6 +12,8 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 
 export default function ComponentsGrid() {
   const { isLoading, data: userData } =
@@ -91,7 +93,7 @@ export default function ComponentsGrid() {
             <CardTitle className="text-neutral-200">Overview</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <Overview />
+            <CurrentWeekOverview />
           </CardContent>
         </Card>
         <Card className="col-span-7 flex h-full flex-col lg:col-span-3">
