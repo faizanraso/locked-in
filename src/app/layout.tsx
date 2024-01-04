@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import AppProviders from "~/lib/providers";
+import { Analytics } from "@vercel/analytics/react";
 
 // const inter = Inter({ subsets: ["latin"] });
 const geist = GeistSans;
@@ -27,6 +28,7 @@ export default function RootLayout({
         <AppProviders>
           <TRPCReactProvider cookies={cookies().toString()}>
             {children}
+            <Analytics />
             <SpeedInsights />
           </TRPCReactProvider>
         </AppProviders>
