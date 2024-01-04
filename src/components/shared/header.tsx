@@ -22,7 +22,7 @@ const navItems = [
 ];
 
 export default function Header() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const currentPage = usePathname() || "/dashboard";
 
   return (
@@ -36,7 +36,10 @@ export default function Header() {
           </Link>
           <div className="flex flex-row items-center justify-center gap-x-2">
             <Avatar className="h-5 w-5">
-              <AvatarImage src="/public/pfp.png" alt="user" />
+              <AvatarImage
+                className="bg-gradient-to-bl from-green-400 via-sky-500 to-purple-600"
+                alt="user"
+              />
               <AvatarFallback className="bg-gradient-to-bl from-green-400 via-sky-500 to-purple-600"></AvatarFallback>
             </Avatar>
             <h1 className="inline text-sm text-neutral-400">

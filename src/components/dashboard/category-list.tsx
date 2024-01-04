@@ -1,72 +1,86 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from "@radix-ui/react-icons";
+/* eslint-disable */
 
-import React from "react";
+import React, { useState } from "react";
+
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { Button } from "../ui/button";
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { cn } from "~/lib/utils";
 
-export default function CategoryList() {
-  const data = [
-    { category: "Math 1ZB3", totalTime: 87 },
-    { category: "Math 1ZC3", totalTime: 2 },
-    { category: "Math 1D04", totalTime: 5 },
-    { category: "Side Projects", totalTime: 1 },
-    { category: "Temp", totalTime: 4 },
-    { category: "Temp", totalTime: 4 },
-  ];
+interface CategoryListProps {
+  categoriesData: any;
+}
+
+export default function CategoryList({ categoriesData }: CategoryListProps) {
+  // if (!categoriesData) return;
+
+  const [breakdownPage, setBreakdownPage] = useState<number>(0);
+  const maxPage = Math.floor(categoriesData?.length / 6);
+
+  function getNextPage() {
+    setBreakdownPage(breakdownPage + 1);
+  }
+
+  function getPreviousPage() {
+    setBreakdownPage(breakdownPage - 1);
+  }
 
   return (
-    <div className="space-y-8 overflow-y-auto">
-      {data
-        .sort((a, b) => {
-          return b.totalTime - a.totalTime; // sort in desc order
-        })
-        .map((item) => (
-          <div className="flex items-center" key={item.category}>
-            <div className="space-y-1">
-              <p className="text-sm font-medium leading-none">
-                {item.category}
-              </p>
+    <div className="flex h-full flex-col justify-between">
+      <div className="space-y-7">
+        {categoriesData ? (
+          categoriesData
+            ?.sort(
+              (a: { hoursTracked: number }, b: { hoursTracked: number }) => {
+                return b.hoursTracked - a.hoursTracked; // sort in desc order
+              },
+            )
+            .slice(breakdownPage * 6, breakdownPage * 6 + 6)
+            .map((item: { categoryName: string; hoursTracked: number }) => (
+              <div className="flex items-center" key={item.categoryName}>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium leading-none">
+                    {item.categoryName}
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">
+                  {item.hoursTracked} hours
+                </div>
+              </div>
+            ))
+        ) : (
+          <SkeletonTheme baseColor="#202020" highlightColor="#444">
+            <div className="space-y-">
+              {Array.from({ length: 6 }, (_, index) => (
+                <div
+                  key={index}
+                  className={cn(index === 5 ? "text-xl" : "pb-5 text-xl")}
+                >
+                  <Skeleton />
+                </div>
+              ))}
             </div>
-            <div className="ml-auto font-medium">{item.totalTime} hours</div>
-          </div>
-        ))}
-      <div className="flex flex-row items-center justify-center space-x-2">
-        {/* <Button
-          variant="outline"
-          className="hidden h-8 w-8 p-0 lg:flex"
-          //   onClick={() => table.setPageIndex(0)}
-          //   disabled={!table.getCanPreviousPage()}
-        >
-          <DoubleArrowLeftIcon className="h-4 w-4" />
-        </Button> */}
+          </SkeletonTheme>
+        )}
+      </div>
+      <div className="flex flex-row items-center justify-center space-x-2 ">
         <Button
           variant="outline"
           className="h-8 w-8 p-0"
-          //   onClick={() => table.previousPage()}
-          //   disabled={!table.getCanPreviousPage()}
+          onClick={() => getPreviousPage()}
+          disabled={!categoriesData || !breakdownPage}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </Button>
         <Button
           variant="outline"
           className="h-8 w-8 p-0"
-          //   onClick={() => table.nextPage()}
-          //   disabled={!table.getCanNextPage()}
+          onClick={() => getNextPage()}
+          disabled={!categoriesData || breakdownPage === maxPage}
         >
           <ChevronRightIcon className="h-4 w-4" />
         </Button>
-        {/* <Button
-          variant="outline"
-          className="hidden h-8 w-8 p-0 lg:flex"
-          //   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          //   disabled={!table.getCanNextPage()}
-        >
-          <DoubleArrowRightIcon className="h-4 w-4" />
-        </Button> */}
       </div>
     </div>
   );
