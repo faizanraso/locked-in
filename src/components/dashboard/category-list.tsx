@@ -3,23 +3,15 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
-export default function CategoryList() {
-  const data = [
-    { categoryName: "Test", hoursTracked: 10 },
-    { categoryName: "Test", hoursTracked: 9 },
-    { categoryName: "Test", hoursTracked: 8 },
-    { categoryName: "Test", hoursTracked: 7 },
-    { categoryName: "Test", hoursTracked: 6 },
-    { categoryName: "Test", hoursTracked: 5 },
-    { categoryName: "Test", hoursTracked: 4 },
-    { categoryName: "Test", hoursTracked: 3 },
-    { categoryName: "Test", hoursTracked: 2 },
-    { categoryName: "Test", hoursTracked: 1 },
-    { categoryName: "Test", hoursTracked: 0 },
-  ];
+interface CategoryListProps {
+  categoriesData: any;
+}
+
+export default function CategoryList({ categoriesData }: CategoryListProps) {
+  if (!categoriesData) return;
 
   const [breakdownPage, setBreakdownPage] = useState<number>(0);
-  const maxPage = Math.floor(data.length / 6);
+  const maxPage = Math.floor(categoriesData.length / 6);
 
   function getNextPage() {
     setBreakdownPage(breakdownPage + 1);
@@ -32,12 +24,12 @@ export default function CategoryList() {
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="space-y-7">
-        {data
-          .sort((a, b) => {
+        {categoriesData
+          ?.sort((a: any, b: any) => {
             return b.hoursTracked - a.hoursTracked; // sort in desc order
           })
           .slice(breakdownPage * 6, breakdownPage * 6 + 6)
-          .map((item) => (
+          .map((item: any) => (
             <div className="flex items-center" key={item.categoryName}>
               <div className="space-y-1">
                 <p className="text-sm font-medium leading-none">
