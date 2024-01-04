@@ -22,7 +22,7 @@ const navItems = [
 ];
 
 export default function Header() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const currentPage = usePathname() || "/dashboard";
 
   return (
@@ -49,7 +49,6 @@ export default function Header() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-
           <UserNav session={session} />
         </div>
       </div>

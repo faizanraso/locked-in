@@ -28,7 +28,7 @@ export const userDataRouter = createTRPCRouter({
 
   getDashboardData: protectedProcedure
     // .input(z.object({ id: z.string() }))
-    .query(({ ctx, input }) => {
+    .query(({ ctx }) => {
       return ctx.db.user.findFirst({ where: { id: ctx.session.user.id } });
     }),
 

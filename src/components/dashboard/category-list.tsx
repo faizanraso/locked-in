@@ -29,11 +29,13 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
       <div className="space-y-7">
         {categoriesData ? (
           categoriesData
-            ?.sort((a: any, b: any) => {
-              return b.hoursTracked - a.hoursTracked; // sort in desc order
-            })
+            ?.sort(
+              (a: { hoursTracked: number }, b: { hoursTracked: number }) => {
+                return b.hoursTracked - a.hoursTracked; // sort in desc order
+              },
+            )
             .slice(breakdownPage * 6, breakdownPage * 6 + 6)
-            .map((item: any) => (
+            .map((item: { categoryName: string; hoursTracked: number }) => (
               <div className="flex items-center" key={item.categoryName}>
                 <div className="space-y-1">
                   <p className="text-sm font-medium leading-none">
