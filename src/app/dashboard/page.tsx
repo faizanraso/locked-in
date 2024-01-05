@@ -34,9 +34,6 @@ export default function HomePage() {
           </div>
           <ComponentsGrid />
           <div className="flex w-full items-center justify-center py-3">
-            <Button className="flex gap-x-2 rounded-lg bg-neutral-200 p-2 hover:bg-neutral-400">
-              Submit Feedback
-            </Button>
           </div>
           {/* <button
             onClick={(e) => {

@@ -9,6 +9,7 @@ import { UserNav } from "./usernav";
 import { useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
+import { Button } from "../ui/button";
 
 const navItems = [
   {
@@ -48,7 +49,7 @@ export default function Header() {
             <Badge variant="outline">Hobby</Badge>
           </div>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-x-2">
           <UserNav session={session} />
         </div>
       </div>
