@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { UserAuthForm } from "../../components/user-auth-form";
+import { UserAuthForm } from "../../components/login/user-auth-form";
 import { getServerAuthSession } from "~/server/auth";
 import { redirect } from "next/navigation";
 
