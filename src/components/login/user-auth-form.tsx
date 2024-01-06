@@ -1,13 +1,16 @@
 "use client";
 
-import * as React from "react";
+import React, { useState } from "react";
+
 import { Button } from "~/components/ui/button";
 import { Icons } from "~/components/ui/icons";
 import { signIn } from "next-auth/react";
-
-import { cn } from "~/lib/utils";
+import { Label } from "~/components/ui/label";
+import { Input } from "~/components/ui/input";
 
 export function UserAuthForm() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   async function signInWithGithub() {
     await signIn("github", {
       callbackUrl: `${window.location.origin}/dashboard`,
@@ -28,23 +31,74 @@ export function UserAuthForm() {
         </p>
       </div>
 
-      <div className="flex w-full flex-col items-center justify-center gap-y-3 p-5">
-        <Button
-          className="flex w-72 items-center justify-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
-          type="button"
-          onClick={signInWithGithub}
-        >
-          <Icons.gitHub className="mr-2 h-4 w-4" />
-          Continue With Github
-        </Button>
-        <Button
-          className="justify flex w-72 items-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
-          type="button"
-          onClick={signInWithGoogle}
-        >
-          <Icons.google className="mr-2 h-4 w-4" />
-          Continue With Google
-        </Button>
+      <div className="grid w-full flex-col items-center justify-center gap-6 p-5">
+        <form className="">
+          <div className="grid gap-3">
+            <div className="grid gap-1">
+              <Label className="sr-only" htmlFor="email">
+                Email
+              </Label>
+              <Input
+                id="email"
+                placeholder="name@example.com"
+                type="email"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect="off"
+                disabled={isLoading}
+                className="w-80 py-6"
+                value={"this doesnt work yet"}
+              />
+            </div>
+            <Button
+              disabled={isLoading}
+              className="w-80 bg-neutral-100 py-6 hover:bg-neutral-300"
+            >
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Sign In with Email
+            </Button>
+          </div>
+        </form>
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">
+              Or continue with
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-y-3">
+          <Button
+            className="flex w-80 items-center justify-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
+            type="button"
+            onClick={signInWithGithub}
+          >
+            {!isLoading ? (
+              <Icons.gitHub className="mr-2 h-4 w-4" />
+            ) : (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}
+            Continue With Github
+          </Button>
+          <Button
+            className="justify flex w-80 items-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
+            type="button"
+            onClick={signInWithGoogle}
+          >
+            {!isLoading ? (
+              <Icons.google className="mr-2 h-4 w-4" />
+            ) : (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}
+            Continue With Google
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-row items-center justify-center gap-x-3 py-3">
