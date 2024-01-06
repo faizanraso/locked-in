@@ -16,7 +16,6 @@ export default function Footer() {
             target="_blank"
             className="text-neutral-400 transition hover:text-neutral-200"
           >
-            <span className="sr-only">GitHub</span>
             <Icons.gitHub className="h-5 w-5" />
           </a>
         </div>

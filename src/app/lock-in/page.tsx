@@ -14,13 +14,15 @@ export default function LockIn() {
               Lock-In 🔒
             </h2>
           </div>
-          <LockInForm />
           <div className="flex w-full items-center justify-center py-3">
-            in case needed
+            <LockInForm />
           </div>
+
+          {/* <div className="flex w-full items-center justify-center py-3">
+            in case needed
+          </div> */}
         </div>
       </main>
-      <LockInForm />
       <Footer />
     </div>
   );
