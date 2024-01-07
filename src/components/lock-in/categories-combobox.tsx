@@ -48,7 +48,7 @@ export function CategoriesCombobox() {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild className="text-neutral-100">
         <Button
           variant="outline"
           role="combobox"
