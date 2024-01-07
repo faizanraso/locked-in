@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { UserAuthForm } from "../../components/login/user-auth-form";
+import { UserLoginForm } from "../../components/login/user-login-form";
 import { getServerAuthSession } from "~/server/auth";
 import { redirect } from "next/navigation";
 
@@ -16,7 +16,7 @@ export default async function LoginPage() {
 
   return (
     <main className="absolute flex min-h-screen w-screen items-center justify-center overflow-hidden bg-black">
-      <UserAuthForm />
+      <UserLoginForm />
     </main>
   );
 }

@@ -7,8 +7,9 @@ import { Icons } from "~/components/ui/icons";
 import { signIn } from "next-auth/react";
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
+import Link from "next/link";
 
-export function UserAuthForm() {
+export function UserLoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function signInWithGithub() {
@@ -32,6 +33,7 @@ export function UserAuthForm() {
       </div>
 
       <div className="grid w-full flex-col items-center justify-center gap-6 p-5">
+        <h1 className="text-center text-3xl font-bold">Welcome Back</h1>
         <form className="">
           <div className="grid gap-3">
             <div className="grid gap-1">
@@ -61,6 +63,15 @@ export function UserAuthForm() {
             </Button>
           </div>
         </form>
+
+        <div className="flex items-center justify-center">
+          <span className="text-sm font-medium text-neutral-200">
+            Don't have an account?{" "}
+            <Link className="text-neutral-400" href={"/create-account"}>
+              Sign up
+            </Link>
+          </span>
+        </div>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
