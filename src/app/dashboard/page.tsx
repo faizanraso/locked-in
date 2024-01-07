@@ -1,12 +1,10 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
-import React from "react";
+import { redirect } from "next/navigation";
 import ComponentsGrid from "~/components/dashboard/components-grid";
 import Footer from "~/components/shared/footer";
 import Header from "~/components/shared/header";
-import { api } from "~/trpc/react";
 
 export default function HomePage() {
   // const router = useRouter();
@@ -22,16 +20,17 @@ export default function HomePage() {
   if (status === "unauthenticated") redirect("/");
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col justify-between">
       <Header />
-      <main className="">
-        <div className="flex-1 space-y-4 px-8 py-10">
+      <main className="mb-auto">
+        <div className="flex-1 space-y-4 px-8 pt-10">
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight text-neutral-200">
               Dashboard
             </h2>
           </div>
           <ComponentsGrid />
+          <div className="flex w-full items-center justify-center py-3"></div>
           {/* <button
             onClick={(e) => {
               e.preventDefault();
@@ -44,6 +43,6 @@ export default function HomePage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

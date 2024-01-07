@@ -9,6 +9,7 @@ import { UserNav } from "./usernav";
 import { useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
+import { Button } from "../ui/button";
 
 const navItems = [
   {
@@ -26,7 +27,7 @@ export default function Header() {
   const currentPage = usePathname() || "/dashboard";
 
   return (
-    <header className="flex flex-col border-b border-neutral-800 px-7 pb-2 pt-4">
+    <header className="flex min-h-24 flex-col border-b border-neutral-800 px-7 pb-2 pt-4">
       <div className="flex w-full flex-row items-center justify-between">
         <div className="flex flex-row items-center justify-center gap-x-3 px-1">
           <Link href="/dashboard" className="">
@@ -48,7 +49,7 @@ export default function Header() {
             <Badge variant="outline">Hobby</Badge>
           </div>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-x-2">
           <UserNav session={session} />
         </div>
       </div>

@@ -1,12 +1,12 @@
 import "~/styles/globals.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistSans } from "geist/font/sans";
 import { cookies } from "next/headers";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { TRPCReactProvider } from "~/trpc/react";
-import AppProviders from "~/lib/providers";
 import { Analytics } from "@vercel/analytics/react";
+import AppProviders from "~/lib/providers";
+import { TRPCReactProvider } from "~/trpc/react";
 
 // const inter = Inter({ subsets: ["latin"] });
 const geist = GeistSans;
