@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Header from "~/components/landing-page/header";
 
 export default function BackgroundBoxesPreview() {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import { getServerAuthSession } from "~/server/auth";
 import { redirect } from "next/navigation";
 import { UserSignupForm } from "~/components/user-auth/user-signup-form";
+import { getServerAuthSession } from "~/server/auth";
 
 export const metadata: Metadata = {
   title: "locked-in",

@@ -1,13 +1,10 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
-import React from "react";
+import { redirect } from "next/navigation";
 import ComponentsGrid from "~/components/dashboard/components-grid";
 import Footer from "~/components/shared/footer";
 import Header from "~/components/shared/header";
-import { Button } from "~/components/ui/button";
-import { api } from "~/trpc/react";
 
 export default function HomePage() {
   // const router = useRouter();
@@ -33,8 +30,7 @@ export default function HomePage() {
             </h2>
           </div>
           <ComponentsGrid />
-          <div className="flex w-full items-center justify-center py-3">
-          </div>
+          <div className="flex w-full items-center justify-center py-3"></div>
           {/* <button
             onClick={(e) => {
               e.preventDefault();

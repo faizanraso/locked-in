@@ -1,9 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn } from "~/lib/utils";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Command,
@@ -12,6 +11,7 @@ import {
   CommandInput,
   CommandItem,
 } from "~/components/ui/command";
+import { cn } from "~/lib/utils";
 
 import {
   Popover,
@@ -19,7 +19,7 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 
-const frameworks = [
+const categories = [
   {
     value: "next.js",
     label: "Next.js",
@@ -56,20 +56,20 @@ export function CategoriesCombobox() {
           className="w-[250px] justify-between text-neutral-100"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            ? categories.find((category) => category.value === value)?.label
+            : "Select category..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 text-neutral-100 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[250px] p-0 text-neutral-100">
         <Command className="">
-          <CommandInput placeholder="Search framework..." />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandInput placeholder="Search category..." />
+          <CommandEmpty>No category found.</CommandEmpty>
           <CommandGroup>
-            {frameworks.map((framework) => (
+            {categories.map((category) => (
               <CommandItem
-                key={framework.value}
-                value={framework.value}
+                key={category.value}
+                value={category.value}
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
@@ -78,10 +78,10 @@ export function CategoriesCombobox() {
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === framework.value ? "opacity-100" : "opacity-0",
+                    value === category.value ? "opacity-100" : "opacity-0",
                   )}
                 />
-                {framework.label}
+                {category.label}
               </CommandItem>
             ))}
           </CommandGroup>
