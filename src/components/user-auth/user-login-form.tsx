@@ -27,13 +27,13 @@ export function UserLoginForm() {
   return (
     <section className="flex min-h-screen w-full flex-col items-center justify-between p-10">
       <div>
-        <p className="text-xl font-semibold text-neutral-200">
+        <p className="text-2xl font-semibold text-neutral-200">
           🔒 <span className="italic">locked-in</span>
         </p>
       </div>
 
       <div className="grid w-full flex-col items-center justify-center gap-6 p-5">
-        <h1 className="text-center text-3xl font-bold">Welcome Back</h1>
+        <h1 className="text-center text-3xl font-bold">Welcome back</h1>
         <form className="">
           <div className="grid gap-3">
             <div className="grid gap-1">
@@ -59,7 +59,7 @@ export function UserLoginForm() {
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Sign In with Email
+              Continue
             </Button>
           </div>
         </form>
@@ -67,7 +67,7 @@ export function UserLoginForm() {
         <div className="flex items-center justify-center">
           <span className="text-sm font-medium text-neutral-200">
             Don't have an account?{" "}
-            <Link className="text-neutral-400" href={"/create-account"}>
+            <Link className="text-neutral-400" href={"/sign-up"}>
               Sign up
             </Link>
           </span>
