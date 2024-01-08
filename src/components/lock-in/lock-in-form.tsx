@@ -6,7 +6,7 @@ import { Button } from "~/components/ui/button";
 import { CategoriesCombobox } from "./categories-combobox";
 
 export default function LockInForm() {
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line  @typescript-eslint/no-unsafe-argument
   const timeInterval = useRef<any>(null);
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
