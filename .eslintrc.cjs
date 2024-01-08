@@ -16,7 +16,8 @@ const config = {
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-empty-interface": "off", // added
-
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unsafe-argument": "warn",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
