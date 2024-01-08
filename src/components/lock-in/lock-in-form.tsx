@@ -6,7 +6,8 @@ import { Button } from "~/components/ui/button";
 import { CategoriesCombobox } from "./categories-combobox";
 
 export default function LockInForm() {
-  let timeInterval = useRef<any>(null);
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const timeInterval = useRef<any>(null);
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
@@ -31,12 +32,9 @@ export default function LockInForm() {
   }, [timer]);
 
   function getTimerDisplayText() {
-    let seconds = Math.floor(timer / 1000);
-    let minutes = Math.floor(seconds / 60);
-    let hours = Math.floor(minutes / 60);
-
-    seconds = seconds % 60;
-    minutes = minutes % 60;
+    const seconds = Math.floor(timer / 1000) % 60;
+    const minutes = Math.floor(seconds / 60) % 60;
+    const hours = Math.floor(minutes / 60);
 
     setTimerDisplayText(
       `${hours.toString().padStart(2, "0")}:${minutes
