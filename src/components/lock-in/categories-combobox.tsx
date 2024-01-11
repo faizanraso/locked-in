@@ -38,8 +38,8 @@ export function CategoriesCombobox({
     if (allCategoriesData) {
       categoriesArr = allCategoriesData.categoriesTracked.map(
         (category: { categoryName: string }) => ({
-          value: category.categoryName,
-          label: category.categoryName.toLowerCase(),
+          value: category.categoryName.toLowerCase(),
+          label: category.categoryName,
         }),
       );
 
@@ -98,6 +98,3 @@ export function CategoriesCombobox({
     </Popover>
   );
 }
-
-
-
