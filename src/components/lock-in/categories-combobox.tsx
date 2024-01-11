@@ -42,9 +42,16 @@ const categories = [
   },
 ];
 
-export function CategoriesCombobox() {
+interface CategoriesComboboxProps {
+  userCategory: string;
+  setUserCategory: any;
+}
+
+export function CategoriesCombobox({
+  userCategory,
+  setUserCategory,
+}: CategoriesComboboxProps) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -55,8 +62,9 @@ export function CategoriesCombobox() {
           aria-expanded={open}
           className="w-[250px] justify-between text-neutral-100"
         >
-          {value
-            ? categories.find((category) => category.value === value)?.label
+          {userCategory
+            ? categories.find((category) => category.value === userCategory)
+                ?.label
             : "Select category..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 text-neutral-100 opacity-50" />
         </Button>
@@ -71,14 +79,18 @@ export function CategoriesCombobox() {
                 key={category.value}
                 value={category.value}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
+                  setUserCategory(
+                    currentValue === userCategory ? "" : currentValue,
+                  );
                   setOpen(false);
                 }}
               >
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === category.value ? "opacity-100" : "opacity-0",
+                    userCategory === category.value
+                      ? "opacity-100"
+                      : "opacity-0",
                   )}
                 />
                 {category.label}

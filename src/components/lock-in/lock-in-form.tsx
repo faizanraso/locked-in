@@ -3,16 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "~/components/ui/button";
+import { useToast } from "../ui/use-toast";
 import { CategoriesCombobox } from "./categories-combobox";
 
 export default function LockInForm() {
+  const { toast } = useToast();
   const timeInterval = useRef<any>(null);
+  const [userCategory, setUserCategory] = useState<string>("");
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
 
   function handleStart() {
     if (isSessionActive) return;
+    if (!userCategory) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description:
+          "Looks like you forgot to select a category for your session.",
+      });
+      return;
+    }
+
     setIsSessionActive(true);
     timeInterval.current = setInterval(() => {
       setTimer((prev) => prev + 1000);
@@ -23,6 +36,7 @@ export default function LockInForm() {
     if (!isSessionActive) return;
     setIsSessionActive(false);
     clearInterval(timeInterval.current);
+
     setTimer(0);
   }
 
@@ -50,7 +64,10 @@ export default function LockInForm() {
         </span>
       </div>
       <div className="flex flex-row py-2">
-        <CategoriesCombobox />
+        <CategoriesCombobox
+          userCategory={userCategory}
+          setUserCategory={setUserCategory}
+        />
         <Button className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
           +
         </Button>
