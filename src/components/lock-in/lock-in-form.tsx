@@ -27,6 +27,11 @@ export default function LockInForm() {
     }
 
     setIsSessionActive(true);
+    toast({
+      variant: "success",
+      description: "Session has begun. Time to lock in 🔒.",
+    });
+
     timeInterval.current = setInterval(() => {
       setTimer((prev) => prev + 1000);
     }, 1000);
