@@ -29,8 +29,25 @@ export const userDataRouter = createTRPCRouter({
   getDashboardData: protectedProcedure
     // .input(z.object({ id: z.string() }))
     .query(({ ctx }) => {
-      return ctx.db.user.findFirst({ where: { id: ctx.session.user.id } });
+      return ctx.db.user.findFirst({
+        where: { id: ctx.session.user.id },
+        select: {
+          avgSessionLength: true,
+          totalSessions: true,
+          totalTimeLockedIn: true,
+          categoriesTracked: true,
+        },
+      });
     }),
+
+  getUserCategoryData: protectedProcedure.query(({ ctx }) => {
+    return ctx.db.user.findFirst({
+      where: { id: ctx.session.user.id },
+      select: {
+        categoriesTracked: true,
+      },
+    });
+  }),
 
   //   getLatest: protectedProcedure.query(({ ctx }) => {
   //     return ctx.db.post.findFirst({

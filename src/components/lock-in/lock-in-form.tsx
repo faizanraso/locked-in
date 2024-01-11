@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "~/components/ui/button";
+import { api } from "~/trpc/react";
 import { useToast } from "../ui/use-toast";
 import { CategoriesCombobox } from "./categories-combobox";
 
@@ -13,6 +14,9 @@ export default function LockInForm() {
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
+
+  const { isLoading, data: allCategoriesData } =
+    api.userData.getUserCategoryData.useQuery();
 
   function handleStart() {
     if (isSessionActive) return;
@@ -31,7 +35,6 @@ export default function LockInForm() {
       variant: "success",
       description: "Session has begun. Time to lock in 🔒.",
     });
-
     timeInterval.current = setInterval(() => {
       setTimer((prev) => prev + 1000);
     }, 1000);
@@ -72,6 +75,7 @@ export default function LockInForm() {
         <CategoriesCombobox
           userCategory={userCategory}
           setUserCategory={setUserCategory}
+          allCategoriesData={allCategoriesData}
         />
         <Button className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
           +
