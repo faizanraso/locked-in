@@ -7,6 +7,15 @@ import { api } from "~/trpc/react";
 import { useToast } from "../ui/use-toast";
 import { CategoriesCombobox } from "./categories-combobox";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
+
 export default function LockInForm() {
   const { toast } = useToast();
   const timeInterval = useRef<any>(null);
@@ -77,9 +86,21 @@ export default function LockInForm() {
           setUserCategory={setUserCategory}
           allCategoriesData={allCategoriesData}
         />
-        <Button className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
-          +
-        </Button>
+        <Dialog>
+          <DialogTrigger className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
+            +
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+            {/* Form code here */}
+          </DialogContent>
+        </Dialog>
       </div>
       <div className="flex flex-col gap-y-4 py-2">
         <Button
