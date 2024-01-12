@@ -9,9 +9,16 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Icons } from "../ui/icons";
 
-export default function AddCategoryButton() {
+interface AddCategoryButtonProps {
+  toast: any;
+}
+
+export default function AddCategoryButton({ toast }: AddCategoryButtonProps) {
   const [categoryName, setCategoryName] = useState<string>("");
+  let isLoading = true;
 
   return (
     <Dialog>
@@ -26,6 +33,11 @@ export default function AddCategoryButton() {
           </DialogDescription>
         </DialogHeader>
         <Input onChange={(e) => setCategoryName(e.target.value)} />
+        <div className="flex w-full items-center justify-center">
+          <Button size={"sm"} variant={"outline"} className="h-10 px-4">
+            Add Category
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
