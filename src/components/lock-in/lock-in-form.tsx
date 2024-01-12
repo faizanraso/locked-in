@@ -1,20 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-import { Button } from "~/components/ui/button";
+import { getTimerDisplayText } from "~/lib/functions/get-timer-display-text";
 import { api } from "~/trpc/react";
 import { useToast } from "../ui/use-toast";
-import { CategoriesCombobox } from "./categories-combobox";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "~/components/ui/dialog";
+import { Button } from "~/components/ui/button";
+import AddCategoryButton from "./add-category-button";
+import { CategoriesCombobox } from "./categories-combobox";
 
 export default function LockInForm() {
   const { toast } = useToast();
@@ -26,6 +19,10 @@ export default function LockInForm() {
 
   const { isLoading, data: allCategoriesData } =
     api.userData.getUserCategoryData.useQuery();
+
+  useEffect(() => {
+    setTimerDisplayText(getTimerDisplayText(timer));
+  }, [timer]);
 
   function handleStart() {
     if (isSessionActive) return;
@@ -53,24 +50,7 @@ export default function LockInForm() {
     if (!isSessionActive) return;
     setIsSessionActive(false);
     clearInterval(timeInterval.current);
-
     setTimer(0);
-  }
-
-  useEffect(() => {
-    getTimerDisplayText();
-  }, [timer]);
-
-  function getTimerDisplayText() {
-    const seconds = Math.floor(timer / 1000) % 60;
-    const minutes = Math.floor(seconds / 60) % 60;
-    const hours = Math.floor(minutes / 60);
-
-    setTimerDisplayText(
-      `${hours.toString().padStart(2, "0")}:${minutes
-        .toString()
-        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`,
-    );
   }
 
   return (
@@ -86,21 +66,7 @@ export default function LockInForm() {
           setUserCategory={setUserCategory}
           allCategoriesData={allCategoriesData}
         />
-        <Dialog>
-          <DialogTrigger className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
-            +
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Are you absolutely sure?</DialogTitle>
-              <DialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </DialogDescription>
-            </DialogHeader>
-            {/* Form code here */}
-          </DialogContent>
-        </Dialog>
+        <AddCategoryButton />
       </div>
       <div className="flex flex-col gap-y-4 py-2">
         <Button
