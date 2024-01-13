@@ -49,6 +49,23 @@ export const userDataRouter = createTRPCRouter({
     });
   }),
 
+  createCategory: protectedProcedure
+    .input(z.object({ categoryName: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      return ctx.db.user.update({
+        where: { id: ctx.session.user.id },
+        data: {
+          categoriesTracked: {
+            push: {
+              categoryName: input.categoryName,
+              hoursTracked: 0,
+              sessionsTracked: 0,
+            },
+          },
+        },
+      });
+    }),
+
   //   getLatest: protectedProcedure.query(({ ctx }) => {
   //     return ctx.db.post.findFirst({
   //       orderBy: { createdAt: "desc" },
