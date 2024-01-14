@@ -8,7 +8,6 @@ import { useToast } from "../ui/use-toast";
 import { Button } from "~/components/ui/button";
 import AddCategoryButton from "./add-category-button";
 import { CategoriesCombobox } from "./categories-combobox";
-import { useRouter } from "next/navigation";
 
 export default function LockInForm() {
   const { toast } = useToast();
@@ -34,7 +33,7 @@ export default function LockInForm() {
     }
 
     if (!allCategoriesData || !isCategoryModalOpen) {
-      refetchData();
+      refetchData().then(null).catch(null);
     }
   }, [isCategoryModalOpen]);
 
