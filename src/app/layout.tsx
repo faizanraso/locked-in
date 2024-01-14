@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import { cookies } from "next/headers";
 
 import { Analytics } from "@vercel/analytics/react";
+import { Toaster } from "~/components/ui/toaster";
 import AppProviders from "~/lib/providers";
 import { TRPCReactProvider } from "~/trpc/react";
 
@@ -29,6 +30,7 @@ export default function RootLayout({
           <TRPCReactProvider cookies={cookies().toString()}>
             {children}
             <Analytics />
+            <Toaster />
             <SpeedInsights />
           </TRPCReactProvider>
         </AppProviders>

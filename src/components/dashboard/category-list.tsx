@@ -15,15 +15,15 @@ interface CategoryListProps {
 export default function CategoryList({ categoriesData }: CategoryListProps) {
   // if (!categoriesData) return;
 
-  const [breakdownPage, setBreakdownPage] = useState<number>(0);
-  const maxPage = Math.floor(categoriesData?.length / 6);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const maxPage = Math.ceil(categoriesData?.length / 6);
 
   function getNextPage() {
-    setBreakdownPage(breakdownPage + 1);
+    setCurrentPage(currentPage + 1);
   }
 
   function getPreviousPage() {
-    setBreakdownPage(breakdownPage - 1);
+    setCurrentPage(currentPage - 1);
   }
 
   return (
@@ -36,7 +36,7 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
                 return b.hoursTracked - a.hoursTracked; // sort in desc order
               },
             )
-            .slice(breakdownPage * 6, breakdownPage * 6 + 6)
+            .slice((currentPage - 1) * 6, (currentPage - 1) * 6 + 6)
             .map((item: { categoryName: string; hoursTracked: number }) => (
               <div className="flex items-center" key={item.categoryName}>
                 <div className="space-y-1">
@@ -69,7 +69,7 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
           variant="outline"
           className="h-8 w-8 p-0"
           onClick={() => getPreviousPage()}
-          disabled={!categoriesData || !breakdownPage}
+          disabled={!categoriesData || currentPage === 1}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </Button>
@@ -77,7 +77,7 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
           variant="outline"
           className="h-8 w-8 p-0"
           onClick={() => getNextPage()}
-          disabled={!categoriesData || breakdownPage === maxPage}
+          disabled={!categoriesData || currentPage === maxPage}
         >
           <ChevronRightIcon className="h-4 w-4" />
         </Button>

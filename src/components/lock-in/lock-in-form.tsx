@@ -1,19 +1,59 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getTimerDisplayText } from "~/lib/functions/get-timer-display-text";
+import { api } from "~/trpc/react";
+import { useToast } from "../ui/use-toast";
 
 import { Button } from "~/components/ui/button";
+import AddCategoryButton from "./add-category-button";
 import { CategoriesCombobox } from "./categories-combobox";
 
 export default function LockInForm() {
-  let timeInterval = useRef<any>(null);
+  const { toast } = useToast();
+  const timeInterval = useRef<any>(null);
+  const [userCategory, setUserCategory] = useState<string>("");
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
+  const [allCategoriesData, setAllCategoriesData] = useState<any>();
+  const [isCategoryModalOpen, setIsCategoryModalOpen] =
+    useState<boolean>(false);
+
+  const categoriesDataQuery = api.userData.getUserCategoryData.useQuery();
+
+  useEffect(() => {
+    setTimerDisplayText(getTimerDisplayText(timer));
+  }, [timer]);
+
+  useEffect(() => {
+    async function refetchData() {
+      const updatedData = await categoriesDataQuery.refetch();
+      setAllCategoriesData(updatedData.data);
+    }
+
+    if (!allCategoriesData || !isCategoryModalOpen) {
+      refetchData();
+    }
+  }, [isCategoryModalOpen]);
 
   function handleStart() {
     if (isSessionActive) return;
+    if (!userCategory) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description:
+          "Looks like you forgot to select a category for your session.",
+      });
+      return;
+    }
+
     setIsSessionActive(true);
+    toast({
+      variant: "success",
+      description: "Session has begun. Time to lock in 🔒.",
+    });
     timeInterval.current = setInterval(() => {
       setTimer((prev) => prev + 1000);
     }, 1000);
@@ -26,25 +66,6 @@ export default function LockInForm() {
     setTimer(0);
   }
 
-  useEffect(() => {
-    getTimerDisplayText();
-  }, [timer]);
-
-  function getTimerDisplayText() {
-    let seconds = Math.floor(timer / 1000);
-    let minutes = Math.floor(seconds / 60);
-    let hours = Math.floor(minutes / 60);
-
-    seconds = seconds % 60;
-    minutes = minutes % 60;
-
-    setTimerDisplayText(
-      `${hours.toString().padStart(2, "0")}:${minutes
-        .toString()
-        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`,
-    );
-  }
-
   return (
     <section className="flex flex-col items-center justify-center gap-y-3 rounded-lg border border-neutral-800 p-8">
       <div className="w-[300px] items-center rounded-lg border border-neutral-800 bg-black px-12 py-2 text-center">
@@ -53,10 +74,17 @@ export default function LockInForm() {
         </span>
       </div>
       <div className="flex flex-row py-2">
-        <CategoriesCombobox />
-        <Button className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
-          +
-        </Button>
+        <CategoriesCombobox
+          userCategory={userCategory}
+          setUserCategory={setUserCategory}
+          allCategoriesData={allCategoriesData}
+        />
+        <AddCategoryButton
+          toast={toast}
+          allCategoriesData={allCategoriesData}
+          isCategoryModalOpen={isCategoryModalOpen}
+          setIsCategoryModalOpen={setIsCategoryModalOpen}
+        />
       </div>
       <div className="flex flex-col gap-y-4 py-2">
         <Button

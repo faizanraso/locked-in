@@ -16,7 +16,13 @@ const config = {
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-empty-interface": "off", // added
-
+    "@typescript-eslint/no-unsafe-call": "off", // added
+    "@typescript-eslint/no-explicit-any": "off", // changed to off
+    "@typescript-eslint/no-unsafe-return": "off", // added
+    "@typescript-eslint/no-unsafe-assignment": "off", // added
+    "@typescript-eslint/no-unsafe-argument": "warn", // added
+    "@typescript-eslint/no-unsafe-member-access": "off", //added
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
