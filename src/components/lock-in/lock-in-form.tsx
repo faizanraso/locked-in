@@ -66,7 +66,7 @@ export default function LockInForm() {
           setUserCategory={setUserCategory}
           allCategoriesData={allCategoriesData}
         />
-        <AddCategoryButton toast={toast}/>
+        <AddCategoryButton toast={toast} allCategoriesData={allCategoriesData}/>
       </div>
       <div className="flex flex-col gap-y-4 py-2">
         <Button

@@ -15,9 +15,13 @@ import { api } from "~/trpc/react";
 
 interface AddCategoryButtonProps {
   toast: any;
+  allCategoriesData: any;
 }
 
-export default function AddCategoryButton({ toast }: AddCategoryButtonProps) {
+export default function AddCategoryButton({
+  toast,
+  allCategoriesData,
+}: AddCategoryButtonProps) {
   const [newCategoryName, setNewCategoryName] = useState<string>("");
   const [isCategoryModalOpen, setIsCategoryModalOpen] =
     useState<boolean>(false);
@@ -28,7 +32,17 @@ export default function AddCategoryButton({ toast }: AddCategoryButtonProps) {
 
   function addCategory(e: { preventDefault: () => void }) {
     e.preventDefault();
-    if (newCategoryName.length < 3) return //return failiure modal;
+
+    // Get all existing categories. This will be used later to avoid duplicate categories
+    const existingUserCategories = allCategoriesData.categoriesTracked.map(
+      (categoryItem: any) => {
+        return categoryItem.categoryName.toLowerCase();
+      },
+    );
+
+    if (newCategoryName.length < 3) return; //return failiure modal;
+    if (existingUserCategories.includes(newCategoryName.toLowerCase())) return; //return failiure modal;
+
     addCategoryMutation.mutate({ categoryName: newCategoryName });
     setIsCategoryModalOpen(false);
 
