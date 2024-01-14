@@ -36,6 +36,7 @@ export function CategoriesCombobox({
 
   useEffect(() => {
     if (allCategoriesData) {
+      console.log(allCategoriesData);
       categoriesArr = allCategoriesData.categoriesTracked.map(
         (category: { categoryName: string }) => ({
           value: category.categoryName.toLowerCase(),

@@ -8,6 +8,7 @@ import { useToast } from "../ui/use-toast";
 import { Button } from "~/components/ui/button";
 import AddCategoryButton from "./add-category-button";
 import { CategoriesCombobox } from "./categories-combobox";
+import { useRouter } from "next/navigation";
 
 export default function LockInForm() {
   const { toast } = useToast();
@@ -16,12 +17,27 @@ export default function LockInForm() {
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
+  const [allCategoriesData, setAllCategoriesData] = useState<any>();
+  const [isCategoryModalOpen, setIsCategoryModalOpen] =
+    useState<boolean>(false);
 
   const categoriesDataQuery = api.userData.getUserCategoryData.useQuery();
 
   useEffect(() => {
     setTimerDisplayText(getTimerDisplayText(timer));
   }, [timer]);
+
+  useEffect(() => {
+    async function refetchData() {
+      const updatedData = await categoriesDataQuery.refetch();
+      console.log(updatedData.data)
+      setAllCategoriesData(updatedData.data);
+    }
+
+    if (!allCategoriesData || !isCategoryModalOpen) {
+      refetchData();
+    }
+  }, [isCategoryModalOpen]);
 
   function handleStart() {
     if (isSessionActive) return;
@@ -63,11 +79,13 @@ export default function LockInForm() {
         <CategoriesCombobox
           userCategory={userCategory}
           setUserCategory={setUserCategory}
-          allCategoriesData={categoriesDataQuery.data}
+          allCategoriesData={allCategoriesData}
         />
         <AddCategoryButton
           toast={toast}
-          categoriesDataQuery={categoriesDataQuery}
+          allCategoriesData={allCategoriesData}
+          isCategoryModalOpen={isCategoryModalOpen}
+          setIsCategoryModalOpen={setIsCategoryModalOpen}
         />
       </div>
       <div className="flex flex-col gap-y-4 py-2">

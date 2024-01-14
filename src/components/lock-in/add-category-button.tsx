@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 import {
@@ -15,29 +17,44 @@ import { api } from "~/trpc/react";
 
 interface AddCategoryButtonProps {
   toast: any;
-  categoriesDataQuery: any;
+  allCategoriesData: any;
+  isCategoryModalOpen: any;
+  setIsCategoryModalOpen: any;
 }
 
 export default function AddCategoryButton({
   toast,
-  categoriesDataQuery,
+  allCategoriesData,
+  isCategoryModalOpen,
+  setIsCategoryModalOpen,
 }: AddCategoryButtonProps) {
   const [newCategoryName, setNewCategoryName] = useState<string>("");
-  const [isCategoryModalOpen, setIsCategoryModalOpen] =
-    useState<boolean>(false);
 
   const addCategoryMutation = api.userData.createCategory.useMutation({
-    onSuccess: () => console.log("done"),
+    onSuccess: () => {
+      toast({
+        variant: "success",
+        description: "Category successfully created ✅ ",
+      });
+      setIsCategoryModalOpen(false);
+    },
+    onError: () =>
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Something went wrong. Please try again.",
+      }),
   });
 
   function addCategory(e: { preventDefault: () => void }) {
     e.preventDefault();
 
     // Get all existing categories. This will be used later to avoid duplicate categories
-    const existingUserCategories =
-      categoriesDataQuery.data.categoriesTracked.map((categoryItem: any) => {
+    const existingUserCategories = allCategoriesData.categoriesTracked.map(
+      (categoryItem: any) => {
         return categoryItem.categoryName.toLowerCase();
-      });
+      },
+    );
 
     if (newCategoryName.length < 2) {
       toast({
@@ -61,25 +78,6 @@ export default function AddCategoryButton({
     }
 
     addCategoryMutation.mutate({ categoryName: newCategoryName });
-
-    if (addCategoryMutation.isSuccess) {
-      toast({
-        variant: "success",
-        description: "Category successfully created ✅ ",
-      });
-    }
-
-    if (addCategoryMutation.isError) {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "Something went wrong. Please try again.",
-      });
-    }
-
-    // refetch categories data
-    categoriesDataQuery.refetch();
-    setIsCategoryModalOpen(false);
   }
 
   return (
