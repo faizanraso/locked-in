@@ -40,13 +40,30 @@ export default function AddCategoryButton({
       },
     );
 
-    if (newCategoryName.length < 3) return; //return failiure modal;
-    if (existingUserCategories.includes(newCategoryName.toLowerCase())) return; //return failiure modal;
+    if (newCategoryName.length < 2) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description:
+          "Looks like your category name is invalid. Make sure it is 3 or more characters.",
+      });
+      return;
+    }
+
+    if (existingUserCategories.includes(newCategoryName.toLowerCase())) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description:
+          "Looks like this category already exists, no need to create it again.",
+      });
+    }
 
     addCategoryMutation.mutate({ categoryName: newCategoryName });
     setIsCategoryModalOpen(false);
 
     // return completion toast
+    
 
     //mutation.success() or mutation.isError()
   }
