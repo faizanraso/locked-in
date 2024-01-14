@@ -17,8 +17,7 @@ export default function LockInForm() {
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
 
-  const { isLoading, data: allCategoriesData } =
-    api.userData.getUserCategoryData.useQuery();
+  const categoriesDataQuery = api.userData.getUserCategoryData.useQuery();
 
   useEffect(() => {
     setTimerDisplayText(getTimerDisplayText(timer));
@@ -64,9 +63,12 @@ export default function LockInForm() {
         <CategoriesCombobox
           userCategory={userCategory}
           setUserCategory={setUserCategory}
-          allCategoriesData={allCategoriesData}
+          allCategoriesData={categoriesDataQuery.data}
         />
-        <AddCategoryButton toast={toast} allCategoriesData={allCategoriesData}/>
+        <AddCategoryButton
+          toast={toast}
+          categoriesDataQuery={categoriesDataQuery}
+        />
       </div>
       <div className="flex flex-col gap-y-4 py-2">
         <Button

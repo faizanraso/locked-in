@@ -15,12 +15,12 @@ import { api } from "~/trpc/react";
 
 interface AddCategoryButtonProps {
   toast: any;
-  allCategoriesData: any;
+  categoriesDataQuery: any;
 }
 
 export default function AddCategoryButton({
   toast,
-  allCategoriesData,
+  categoriesDataQuery,
 }: AddCategoryButtonProps) {
   const [newCategoryName, setNewCategoryName] = useState<string>("");
   const [isCategoryModalOpen, setIsCategoryModalOpen] =
@@ -34,11 +34,10 @@ export default function AddCategoryButton({
     e.preventDefault();
 
     // Get all existing categories. This will be used later to avoid duplicate categories
-    const existingUserCategories = allCategoriesData.categoriesTracked.map(
-      (categoryItem: any) => {
+    const existingUserCategories =
+      categoriesDataQuery.data.categoriesTracked.map((categoryItem: any) => {
         return categoryItem.categoryName.toLowerCase();
-      },
-    );
+      });
 
     if (newCategoryName.length < 2) {
       toast({
@@ -50,6 +49,7 @@ export default function AddCategoryButton({
       return;
     }
 
+    // Check if the category already exists
     if (existingUserCategories.includes(newCategoryName.toLowerCase())) {
       toast({
         variant: "destructive",
@@ -57,15 +57,29 @@ export default function AddCategoryButton({
         description:
           "Looks like this category already exists, no need to create it again.",
       });
+      return;
     }
 
     addCategoryMutation.mutate({ categoryName: newCategoryName });
+
+    if (addCategoryMutation.isSuccess) {
+      toast({
+        variant: "success",
+        description: "Category successfully created ✅ ",
+      });
+    }
+
+    if (addCategoryMutation.isError) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Something went wrong. Please try again.",
+      });
+    }
+
+    // refetch categories data
+    categoriesDataQuery.refetch();
     setIsCategoryModalOpen(false);
-
-    // return completion toast
-    
-
-    //mutation.success() or mutation.isError()
   }
 
   return (
