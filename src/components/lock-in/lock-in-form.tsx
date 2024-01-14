@@ -33,7 +33,7 @@ export default function LockInForm() {
     }
 
     if (!allCategoriesData || !isCategoryModalOpen) {
-      refetchData().then(null).catch(null);
+      refetchData();
     }
   }, [isCategoryModalOpen]);
 

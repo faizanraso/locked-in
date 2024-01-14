@@ -22,6 +22,7 @@ const config = {
     "@typescript-eslint/no-unsafe-assignment": "off", // added
     "@typescript-eslint/no-unsafe-argument": "warn", // added
     "@typescript-eslint/no-unsafe-member-access": "off", //added
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
