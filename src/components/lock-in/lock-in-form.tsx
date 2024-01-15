@@ -8,9 +8,11 @@ import { useToast } from "../ui/use-toast";
 import { Button } from "~/components/ui/button";
 import AddCategoryButton from "./add-category-button";
 import { CategoriesCombobox } from "./categories-combobox";
+import { useRouter } from "next/navigation";
 
 export default function LockInForm() {
   const { toast } = useToast();
+  const router = useRouter();
   const timeInterval = useRef<any>(null);
   const [userCategory, setUserCategory] = useState<string>("");
   const [timer, setTimer] = useState<number>(0);
@@ -36,6 +38,19 @@ export default function LockInForm() {
       refetchData();
     }
   }, [isCategoryModalOpen]);
+
+  useEffect(() => {
+    function beforeUnload(e: BeforeUnloadEvent) {
+      if (!isSessionActive) return;
+      e.preventDefault();
+    }
+
+    window.addEventListener("beforeunload", beforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", beforeUnload);
+    };
+  }, [isSessionActive, router]);
 
   function handleStart() {
     if (isSessionActive) return;
@@ -78,12 +93,14 @@ export default function LockInForm() {
           userCategory={userCategory}
           setUserCategory={setUserCategory}
           allCategoriesData={allCategoriesData}
+          disabled={isSessionActive}
         />
         <AddCategoryButton
           toast={toast}
           allCategoriesData={allCategoriesData}
           isCategoryModalOpen={isCategoryModalOpen}
           setIsCategoryModalOpen={setIsCategoryModalOpen}
+          disabled={isSessionActive}
         />
       </div>
       <div className="flex flex-col gap-y-4 py-2">

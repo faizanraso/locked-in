@@ -20,6 +20,7 @@ interface AddCategoryButtonProps {
   allCategoriesData: any;
   isCategoryModalOpen: any;
   setIsCategoryModalOpen: any;
+  disabled: boolean;
 }
 
 export default function AddCategoryButton({
@@ -27,6 +28,7 @@ export default function AddCategoryButton({
   allCategoriesData,
   isCategoryModalOpen,
   setIsCategoryModalOpen,
+  disabled,
 }: AddCategoryButtonProps) {
   const [newCategoryName, setNewCategoryName] = useState<string>("");
 
@@ -82,7 +84,10 @@ export default function AddCategoryButton({
 
   return (
     <Dialog open={isCategoryModalOpen} onOpenChange={setIsCategoryModalOpen}>
-      <DialogTrigger className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
+      <DialogTrigger
+        disabled={disabled}
+        className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800"
+      >
         +
       </DialogTrigger>
       <DialogContent>

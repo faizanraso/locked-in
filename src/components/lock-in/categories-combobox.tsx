@@ -23,12 +23,14 @@ interface CategoriesComboboxProps {
   userCategory: string;
   setUserCategory: any;
   allCategoriesData: any;
+  disabled: boolean;
 }
 
 export function CategoriesCombobox({
   userCategory,
   setUserCategory,
   allCategoriesData,
+  disabled,
 }: CategoriesComboboxProps) {
   const [open, setOpen] = useState(false);
   const [allCategories, setAllCategories] = useState<any>([]);
@@ -55,6 +57,7 @@ export function CategoriesCombobox({
           role="combobox"
           aria-expanded={open}
           className="w-[250px] justify-between text-neutral-100"
+          disabled={disabled}
         >
           {userCategory
             ? allCategories.find(
