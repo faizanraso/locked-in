@@ -8,11 +8,9 @@ import { useToast } from "../ui/use-toast";
 import { Button } from "~/components/ui/button";
 import AddCategoryButton from "./add-category-button";
 import { CategoriesCombobox } from "./categories-combobox";
-import { useRouter } from "next/navigation";
 
 export default function LockInForm() {
   const { toast } = useToast();
-  const router = useRouter();
   const timeInterval = useRef<any>(null);
   const [userCategory, setUserCategory] = useState<string>("");
   const [timer, setTimer] = useState<number>(0);
@@ -50,7 +48,7 @@ export default function LockInForm() {
     return () => {
       window.removeEventListener("beforeunload", beforeUnload);
     };
-  }, [isSessionActive, router]);
+  }, [isSessionActive]);
 
   function handleStart() {
     if (isSessionActive) return;

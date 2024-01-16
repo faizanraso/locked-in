@@ -14,6 +14,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Icons } from "../ui/icons";
 import { api } from "~/trpc/react";
+import { cn } from "~/lib/utils";
 
 interface AddCategoryButtonProps {
   toast: any;
@@ -86,7 +87,12 @@ export default function AddCategoryButton({
     <Dialog open={isCategoryModalOpen} onOpenChange={setIsCategoryModalOpen}>
       <DialogTrigger
         disabled={disabled}
-        className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800"
+        className={cn(
+          "ml-[10px] w-[40px] items-center justify-center rounded-full border bg-black text-lg font-medium text-neutral-100",
+          disabled
+            ? "border-neutral-900 text-neutral-500"
+            : "border-neutral-800 hover:bg-neutral-800",
+        )}
       >
         +
       </DialogTrigger>
