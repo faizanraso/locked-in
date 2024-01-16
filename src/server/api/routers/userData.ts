@@ -7,18 +7,6 @@ import {
 } from "~/server/api/trpc";
 
 export const userDataRouter = createTRPCRouter({
-
-  create: protectedProcedure
-    .input(z.object({ categoryName: z.string().min(1) }))
-    .mutation(async ({ ctx, input }) => {
-      return ctx.db.userLISession.create({
-        data: {
-          categoryName: input.categoryName,
-          user: { connect: { id: ctx.session.user.id } },
-        },
-      });
-    }),
-
   getDashboardData: protectedProcedure
     // .input(z.object({ id: z.string() }))
     .query(({ ctx }) => {
@@ -58,5 +46,4 @@ export const userDataRouter = createTRPCRouter({
         },
       });
     }),
-
 });

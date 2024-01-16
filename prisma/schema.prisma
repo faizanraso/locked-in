@@ -57,10 +57,9 @@ model VerificationToken {
 }
 
 model UserLISession {
-  sessionId    String    @id @default(cuid())
+  sessionId    String @id @default(cuid())
   userId       String
   categoryName String
-  createdAt    DateTime  @default(now()) @db.Timestamp(6)
-  finishedAt   DateTime?
-  user         User      @relation(fields: [userId], references: [id])
+  duration     BigInt
+  user         User   @relation(fields: [userId], references: [id])
 }
