@@ -7,13 +7,6 @@ import {
 } from "~/server/api/trpc";
 
 export const userDataRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
 
   create: protectedProcedure
     .input(z.object({ categoryName: z.string().min(1) }))
@@ -66,14 +59,4 @@ export const userDataRouter = createTRPCRouter({
       });
     }),
 
-  //   getLatest: protectedProcedure.query(({ ctx }) => {
-  //     return ctx.db.post.findFirst({
-  //       orderBy: { createdAt: "desc" },
-  //       where: { createdBy: { id: ctx.session.user.id } },
-  //     });
-  //   }),
-
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
 });

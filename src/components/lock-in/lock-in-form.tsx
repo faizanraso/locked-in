@@ -75,8 +75,12 @@ export default function LockInForm() {
   function handleStop() {
     if (!isSessionActive) return;
     setIsSessionActive(false);
+
+    // post request to save user data, and trigger summary modal
+
     clearInterval(timeInterval.current);
     setTimer(0);
+    setUserCategory("");
   }
 
   return (
