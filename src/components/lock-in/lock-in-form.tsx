@@ -72,11 +72,14 @@ export default function LockInForm() {
     }, 1000);
   }
 
+  const userLiSessionMutation = api.userLISession.create.useMutation({});
+
   function handleStop() {
     if (!isSessionActive) return;
     setIsSessionActive(false);
 
     // post request to save user data, and trigger summary modal
+    userLiSessionMutation.mutate({ categoryName: "T1", duration: 10 });
 
     clearInterval(timeInterval.current);
     setTimer(0);

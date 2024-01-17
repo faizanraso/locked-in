@@ -36,7 +36,7 @@ model Session {
 model User {
   id                String          @id @default(cuid())
   name              String?
-  email             String?         @unique
+  email             String          @unique
   emailVerified     DateTime?
   image             String?
   avgSessionLength  Float           @default(0)
@@ -60,6 +60,6 @@ model UserLISession {
   sessionId    String @id @default(cuid())
   userId       String
   categoryName String
-  duration     BigInt
+  duration     Int
   user         User   @relation(fields: [userId], references: [id])
 }
