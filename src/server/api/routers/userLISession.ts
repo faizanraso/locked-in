@@ -34,15 +34,15 @@ export const userLISesionRouter = createTRPCRouter({
         },
       );
 
-      console.log(updatedCategoryData);
+      const updateCategoryData = await ctx.db.user.update({
+        where: {
+          email: ctx.session.user.email ?? "",
+        },
+        data: {
+          categoriesTracked: updatedCategoryData,
+        },
+      });
 
-      // const updateCategoryData = await ctx.db.user.update({
-      //   where: {
-      //     email: ctx.session.user.email ?? "",
-      //   },
-      //   data: {
-      //     categoriesTracked:
-      //   }
-      // });
+      return { trackSession, updateCategoryData };
     }),
 });
