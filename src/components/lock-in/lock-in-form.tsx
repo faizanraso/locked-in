@@ -29,7 +29,7 @@ export default function LockInForm() {
   useEffect(() => {
     async function refetchData() {
       const updatedData = await categoriesDataQuery.refetch();
-      setAllCategoriesData(updatedData.data);
+      setAllCategoriesData(updatedData.data?.userCategories);
     }
 
     if (!allCategoriesData || !isCategoryModalOpen) {

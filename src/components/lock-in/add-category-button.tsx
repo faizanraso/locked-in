@@ -53,9 +53,9 @@ export default function AddCategoryButton({
     e.preventDefault();
 
     // Get all existing categories. This will be used later to avoid duplicate categories
-    const existingUserCategories = allCategoriesData.categoriesTracked.map(
+    const existingUserCategories = allCategoriesData.map(
       (categoryItem: any) => {
-        return categoryItem.categoryName.toLowerCase();
+        return categoryItem.name.toLowerCase();
       },
     );
 

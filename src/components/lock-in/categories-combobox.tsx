@@ -38,12 +38,10 @@ export function CategoriesCombobox({
 
   useEffect(() => {
     if (allCategoriesData) {
-      categoriesArr = allCategoriesData.categoriesTracked.map(
-        (category: { categoryName: string }) => ({
-          value: category.categoryName.toLowerCase(),
-          label: category.categoryName,
-        }),
-      );
+      categoriesArr = allCategoriesData.map((category: { name: string }) => ({
+        value: category.name.toLowerCase(),
+        label: category.name,
+      }));
 
       setAllCategories(categoriesArr);
     }

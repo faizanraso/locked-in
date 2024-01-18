@@ -25,7 +25,7 @@ export const userDataRouter = createTRPCRouter({
     return ctx.db.user.findFirst({
       where: { id: ctx.session.user.id },
       select: {
-        categoriesTracked: true,
+        userCategories: true,
       },
     });
   }),
