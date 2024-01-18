@@ -78,7 +78,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? <Skeleton /> : userData?.categoriesTracked.length}
+              {isLoading ? <Skeleton /> : userData?.userCategories.length}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +1 new category in the past week
@@ -103,7 +103,7 @@ export default function ComponentsGrid() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex h-full flex-col justify-between">
-            <CategoryList categoriesData={userData?.categoriesTracked} />
+            <CategoryList categoriesData={userData?.userCategories} />
           </CardContent>
         </Card>
       </div>
