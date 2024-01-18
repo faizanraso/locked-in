@@ -15,6 +15,8 @@ interface CategoryListProps {
 export default function CategoryList({ categoriesData }: CategoryListProps) {
   // if (!categoriesData) return;
 
+  console.log(categoriesData)
+
   const [currentPage, setCurrentPage] = useState<number>(1);
   const maxPage = Math.ceil(categoriesData?.length / 6);
 
@@ -32,20 +34,23 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
         {categoriesData ? (
           categoriesData
             ?.sort(
-              (a: { hoursTracked: number }, b: { hoursTracked: number }) => {
-                return b.hoursTracked - a.hoursTracked; // sort in desc order
+              (
+                a: { durationTracked: number },
+                b: { durationTracked: number },
+              ) => {
+                return b.durationTracked - a.durationTracked; // sort in desc order
               },
             )
             .slice((currentPage - 1) * 6, (currentPage - 1) * 6 + 6)
-            .map((item: { categoryName: string; hoursTracked: number }) => (
-              <div className="flex items-center" key={item.categoryName}>
+            .map((item: { name: string; durationTracked: number }) => (
+              <div className="flex items-center" key={item.name}>
                 <div className="space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    {item.categoryName}
+                    {item.name}
                   </p>
                 </div>
                 <div className="ml-auto font-medium">
-                  {item.hoursTracked} hours
+                  {item.durationTracked} hours
                 </div>
               </div>
             ))

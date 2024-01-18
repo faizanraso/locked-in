@@ -54,7 +54,7 @@ model UserCategory {
   User            User?   @relation(fields: [userId], references: [id])
   userId          String?
   name            String
-  durationTracked BigInt
+  durationTracked Int
   sessionsTracked Int
 }
 
