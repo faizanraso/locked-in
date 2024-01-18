@@ -9,16 +9,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { cn } from "~/lib/utils";
 
 interface CategoryListProps {
-  categoriesData: any;
+  userCategoriesData: any;
 }
 
-export default function CategoryList({ categoriesData }: CategoryListProps) {
+export default function CategoryList({
+  userCategoriesData,
+}: CategoryListProps) {
   // if (!categoriesData) return;
 
-  console.log(categoriesData)
-
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const maxPage = Math.ceil(categoriesData?.length / 6);
+  const maxPage = Math.ceil(userCategoriesData?.length / 6);
 
   function getNextPage() {
     setCurrentPage(currentPage + 1);
@@ -31,8 +31,8 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="space-y-7">
-        {categoriesData ? (
-          categoriesData
+        {userCategoriesData ? (
+          userCategoriesData
             ?.sort(
               (
                 a: { durationTracked: number },
@@ -74,7 +74,7 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
           variant="outline"
           className="h-8 w-8 p-0"
           onClick={() => getPreviousPage()}
-          disabled={!categoriesData || currentPage === 1}
+          disabled={!userCategoriesData || currentPage === 1}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </Button>
@@ -82,7 +82,7 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
           variant="outline"
           className="h-8 w-8 p-0"
           onClick={() => getNextPage()}
-          disabled={!categoriesData || currentPage === maxPage}
+          disabled={!userCategoriesData || currentPage === maxPage}
         >
           <ChevronRightIcon className="h-4 w-4" />
         </Button>

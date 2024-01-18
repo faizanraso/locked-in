@@ -103,7 +103,7 @@ export default function ComponentsGrid() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex h-full flex-col justify-between">
-            <CategoryList categoriesData={userData?.userCategories} />
+            <CategoryList userCategoriesData={userData?.userCategories} />
           </CardContent>
         </Card>
       </div>

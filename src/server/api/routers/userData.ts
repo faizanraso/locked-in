@@ -33,16 +33,12 @@ export const userDataRouter = createTRPCRouter({
   createCategory: protectedProcedure
     .input(z.object({ categoryName: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.user.update({
-        where: { id: ctx.session.user.id },
+      return ctx.db.userCategory.create({
         data: {
-          categoriesTracked: {
-            push: {
-              categoryName: input.categoryName,
-              hoursTracked: 0,
-              sessionsTracked: 0,
-            },
-          },
+          userId: ctx.session.user.id,
+          name: input.categoryName,
+          durationTracked: 0,
+          sessionsTracked: 0,
         },
       });
     }),
