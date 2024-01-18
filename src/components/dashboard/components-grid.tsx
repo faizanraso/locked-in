@@ -78,7 +78,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? <Skeleton /> : userData?.categoriesTracked.length}
+              {isLoading ? <Skeleton /> : userData?.}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +1 new category in the past week
