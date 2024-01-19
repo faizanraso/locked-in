@@ -42,20 +42,20 @@ model User {
   avgSessionLength  Float           @default(0)
   totalSessions     Int             @default(0)
   totalTimeLockedIn Float           @default(0)
-  userCategories    UserCategory[]
   categoriesTracked Json[]          @default([])
   accounts          Account[]
   sessions          Session[]
+  userCategories    UserCategory[]
   UserLISessions    UserLISession[]
 }
 
 model UserCategory {
-  id              String          @id @default(cuid())
-  User            User?           @relation(fields: [userId], references: [id])
-  userId          String?
+  id              String          @id @default("")
+  userId          String          @default("")
   name            String
   durationTracked Int
   sessionsTracked Int
+  User            User            @relation(fields: [userId], references: [id], onDelete: SetNull)
   UserLISession   UserLISession[]
 }
 
@@ -70,8 +70,8 @@ model VerificationToken {
 model UserLISession {
   sessionId      String       @id @default(cuid())
   userId         String
-  userCategoryId String
+  userCategoryId String       @default("")
   duration       Int
-  user           User         @relation(fields: [userId], references: [id])
   category       UserCategory @relation(fields: [userCategoryId], references: [id])
+  user           User         @relation(fields: [userId], references: [id])
 }
