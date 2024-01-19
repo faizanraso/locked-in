@@ -12,15 +12,16 @@ import { CategoriesCombobox } from "./categories-combobox";
 export default function LockInForm() {
   const { toast } = useToast();
   const timeInterval = useRef<any>(null);
-  const [userCategory, setUserCategory] = useState<string>("");
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
+  const [userCategory, setUserCategory] = useState<string>("");
   const [allCategoriesData, setAllCategoriesData] = useState<any>();
   const [isCategoryModalOpen, setIsCategoryModalOpen] =
     useState<boolean>(false);
 
   const categoriesDataQuery = api.userData.getUserCategoryData.useQuery();
+  const userLISessionMutation = api.userLISession.create.useMutation({});
 
   useEffect(() => {
     setTimerDisplayText(getTimerDisplayText(timer));
@@ -72,14 +73,14 @@ export default function LockInForm() {
     }, 1000);
   }
 
-  const userLiSessionMutation = api.userLISession.create.useMutation({});
-
   function handleStop() {
     if (!isSessionActive) return;
     setIsSessionActive(false);
-
-    // post request to save user data, and trigger summary modal
-    userLiSessionMutation.mutate({ categoryName: "T1", duration: 10 });
+    console.log(userCategory, timer);
+    userLISessionMutation.mutate({
+      categoryName: userCategory,
+      duration: timer,
+    });
 
     clearInterval(timeInterval.current);
     setTimer(0);
