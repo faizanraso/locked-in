@@ -32,9 +32,8 @@ export const userLISesionRouter = createTRPCRouter({
             sessionsTracked: userCategory.sessionsTracked + 1,
           },
         });
-        
-      } else {
-        return "Invalid ";
+
+        return { trackSession, updateCategoryData };
       }
     }),
 });

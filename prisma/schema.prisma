@@ -51,11 +51,11 @@ model User {
 
 model UserCategory {
   id              String          @id @default("")
-  userId          String          @default("")
+  userId          String?         @default("")
   name            String
   durationTracked Int
   sessionsTracked Int
-  User            User            @relation(fields: [userId], references: [id], onDelete: SetNull)
+  User            User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
   UserLISession   UserLISession[]
 }
 
