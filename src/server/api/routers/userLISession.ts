@@ -10,6 +10,7 @@ export const userLISesionRouter = createTRPCRouter({
   create: protectedProcedure
     .input(z.object({ categoryName: z.string().min(1), duration: z.number() }))
     .mutation(async ({ ctx, input }) => {
+      
       const trackSession = await ctx.db.userLISession.create({
         data: {
           user: { connect: { id: ctx.session.user.id } },

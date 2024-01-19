@@ -1,8 +1,16 @@
+"use client";
+
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 import LockInForm from "~/components/lock-in/lock-in-form";
 import Footer from "~/components/shared/footer";
 import Header from "~/components/shared/header";
 
 export default function LockIn() {
+  const { data, status } = useSession();
+
+  if (status === "unauthenticated") redirect("/");
+
   return (
     <div className="flex min-h-screen flex-col justify-between">
       <Header />
