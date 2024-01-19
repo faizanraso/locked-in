@@ -7,25 +7,6 @@ import {
 } from "~/server/api/trpc";
 
 export const userDataRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
-
-  create: protectedProcedure
-    .input(z.object({ categoryName: z.string().min(1) }))
-    .mutation(async ({ ctx, input }) => {
-      return ctx.db.userLISession.create({
-        data: {
-          categoryName: input.categoryName,
-          user: { connect: { id: ctx.session.user.id } },
-        },
-      });
-    }),
-
   getDashboardData: protectedProcedure
     // .input(z.object({ id: z.string() }))
     .query(({ ctx }) => {
@@ -35,7 +16,7 @@ export const userDataRouter = createTRPCRouter({
           avgSessionLength: true,
           totalSessions: true,
           totalTimeLockedIn: true,
-          categoriesTracked: true,
+          userCategories: true,
         },
       });
     }),
@@ -44,7 +25,7 @@ export const userDataRouter = createTRPCRouter({
     return ctx.db.user.findFirst({
       where: { id: ctx.session.user.id },
       select: {
-        categoriesTracked: true,
+        userCategories: true,
       },
     });
   }),
@@ -52,28 +33,13 @@ export const userDataRouter = createTRPCRouter({
   createCategory: protectedProcedure
     .input(z.object({ categoryName: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.user.update({
-        where: { id: ctx.session.user.id },
+      return ctx.db.userCategory.create({
         data: {
-          categoriesTracked: {
-            push: {
-              categoryName: input.categoryName,
-              hoursTracked: 0,
-              sessionsTracked: 0,
-            },
-          },
+          userId: ctx.session.user.id,
+          name: input.categoryName,
+          durationTracked: 0,
+          sessionsTracked: 0,
         },
       });
     }),
-
-  //   getLatest: protectedProcedure.query(({ ctx }) => {
-  //     return ctx.db.post.findFirst({
-  //       orderBy: { createdAt: "desc" },
-  //       where: { createdBy: { id: ctx.session.user.id } },
-  //     });
-  //   }),
-
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
 });

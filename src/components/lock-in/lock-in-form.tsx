@@ -12,15 +12,16 @@ import { CategoriesCombobox } from "./categories-combobox";
 export default function LockInForm() {
   const { toast } = useToast();
   const timeInterval = useRef<any>(null);
-  const [userCategory, setUserCategory] = useState<string>("");
   const [timer, setTimer] = useState<number>(0);
   const [timerDisplayText, setTimerDisplayText] = useState<string>("00:00:00");
   const [isSessionActive, setIsSessionActive] = useState<boolean>(false);
+  const [userCategory, setUserCategory] = useState<string>("");
   const [allCategoriesData, setAllCategoriesData] = useState<any>();
   const [isCategoryModalOpen, setIsCategoryModalOpen] =
     useState<boolean>(false);
 
   const categoriesDataQuery = api.userData.getUserCategoryData.useQuery();
+  const userLISessionMutation = api.userLISession.create.useMutation({});
 
   useEffect(() => {
     setTimerDisplayText(getTimerDisplayText(timer));
@@ -29,13 +30,26 @@ export default function LockInForm() {
   useEffect(() => {
     async function refetchData() {
       const updatedData = await categoriesDataQuery.refetch();
-      setAllCategoriesData(updatedData.data);
+      setAllCategoriesData(updatedData.data?.userCategories);
     }
 
     if (!allCategoriesData || !isCategoryModalOpen) {
       refetchData();
     }
   }, [isCategoryModalOpen]);
+
+  useEffect(() => {
+    function beforeUnload(e: BeforeUnloadEvent) {
+      if (!isSessionActive) return;
+      e.preventDefault();
+    }
+
+    window.addEventListener("beforeunload", beforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", beforeUnload);
+    };
+  }, [isSessionActive]);
 
   function handleStart() {
     if (isSessionActive) return;
@@ -62,8 +76,15 @@ export default function LockInForm() {
   function handleStop() {
     if (!isSessionActive) return;
     setIsSessionActive(false);
+    console.log(userCategory, timer);
+    userLISessionMutation.mutate({
+      categoryName: userCategory,
+      duration: timer,
+    });
+
     clearInterval(timeInterval.current);
     setTimer(0);
+    setUserCategory("");
   }
 
   return (
@@ -78,12 +99,14 @@ export default function LockInForm() {
           userCategory={userCategory}
           setUserCategory={setUserCategory}
           allCategoriesData={allCategoriesData}
+          disabled={isSessionActive}
         />
         <AddCategoryButton
           toast={toast}
           allCategoriesData={allCategoriesData}
           isCategoryModalOpen={isCategoryModalOpen}
           setIsCategoryModalOpen={setIsCategoryModalOpen}
+          disabled={isSessionActive}
         />
       </div>
       <div className="flex flex-col gap-y-4 py-2">

@@ -9,14 +9,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { cn } from "~/lib/utils";
 
 interface CategoryListProps {
-  categoriesData: any;
+  userCategoriesData: any;
 }
 
-export default function CategoryList({ categoriesData }: CategoryListProps) {
+export default function CategoryList({
+  userCategoriesData,
+}: CategoryListProps) {
   // if (!categoriesData) return;
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const maxPage = Math.ceil(categoriesData?.length / 6);
+  const maxPage = Math.ceil(userCategoriesData?.length / 6);
 
   function getNextPage() {
     setCurrentPage(currentPage + 1);
@@ -29,23 +31,26 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="space-y-7">
-        {categoriesData ? (
-          categoriesData
+        {userCategoriesData ? (
+          userCategoriesData
             ?.sort(
-              (a: { hoursTracked: number }, b: { hoursTracked: number }) => {
-                return b.hoursTracked - a.hoursTracked; // sort in desc order
+              (
+                a: { durationTracked: number },
+                b: { durationTracked: number },
+              ) => {
+                return b.durationTracked - a.durationTracked; // sort in desc order
               },
             )
             .slice((currentPage - 1) * 6, (currentPage - 1) * 6 + 6)
-            .map((item: { categoryName: string; hoursTracked: number }) => (
-              <div className="flex items-center" key={item.categoryName}>
+            .map((item: { name: string; durationTracked: number }) => (
+              <div className="flex items-center" key={item.name}>
                 <div className="space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    {item.categoryName}
+                    {item.name}
                   </p>
                 </div>
                 <div className="ml-auto font-medium">
-                  {item.hoursTracked} hours
+                  {item.durationTracked} hours
                 </div>
               </div>
             ))
@@ -69,7 +74,7 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
           variant="outline"
           className="h-8 w-8 p-0"
           onClick={() => getPreviousPage()}
-          disabled={!categoriesData || currentPage === 1}
+          disabled={!userCategoriesData || currentPage === 1}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </Button>
@@ -77,7 +82,7 @@ export default function CategoryList({ categoriesData }: CategoryListProps) {
           variant="outline"
           className="h-8 w-8 p-0"
           onClick={() => getNextPage()}
-          disabled={!categoriesData || currentPage === maxPage}
+          disabled={!userCategoriesData || currentPage === maxPage}
         >
           <ChevronRightIcon className="h-4 w-4" />
         </Button>

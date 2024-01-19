@@ -36,7 +36,7 @@ model Session {
 model User {
   id                String          @id @default(cuid())
   name              String?
-  email             String?         @unique
+  email             String          @unique
   emailVerified     DateTime?
   image             String?
   avgSessionLength  Float           @default(0)
@@ -45,7 +45,18 @@ model User {
   categoriesTracked Json[]          @default([])
   accounts          Account[]
   sessions          Session[]
+  userCategories    UserCategory[]
   UserLISessions    UserLISession[]
+}
+
+model UserCategory {
+  id              String          @id @default("")
+  userId          String?         @default("")
+  name            String          @unique
+  durationTracked Int
+  sessionsTracked Int
+  User            User?           @relation(fields: [userId], references: [id])
+  UserLISession   UserLISession[]
 }
 
 model VerificationToken {
@@ -57,10 +68,10 @@ model VerificationToken {
 }
 
 model UserLISession {
-  sessionId    String    @id @default(cuid())
-  userId       String
-  categoryName String
-  createdAt    DateTime  @default(now()) @db.Timestamp(6)
-  finishedAt   DateTime?
-  user         User      @relation(fields: [userId], references: [id])
+  sessionId      String       @id @default(cuid())
+  userId         String
+  userCategoryId String       @default("")
+  duration       Int
+  category       UserCategory @relation(fields: [userCategoryId], references: [id])
+  user           User         @relation(fields: [userId], references: [id])
 }

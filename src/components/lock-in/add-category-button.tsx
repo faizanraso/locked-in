@@ -14,12 +14,14 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Icons } from "../ui/icons";
 import { api } from "~/trpc/react";
+import { cn } from "~/lib/utils";
 
 interface AddCategoryButtonProps {
   toast: any;
   allCategoriesData: any;
   isCategoryModalOpen: any;
   setIsCategoryModalOpen: any;
+  disabled: boolean;
 }
 
 export default function AddCategoryButton({
@@ -27,6 +29,7 @@ export default function AddCategoryButton({
   allCategoriesData,
   isCategoryModalOpen,
   setIsCategoryModalOpen,
+  disabled,
 }: AddCategoryButtonProps) {
   const [newCategoryName, setNewCategoryName] = useState<string>("");
 
@@ -50,9 +53,9 @@ export default function AddCategoryButton({
     e.preventDefault();
 
     // Get all existing categories. This will be used later to avoid duplicate categories
-    const existingUserCategories = allCategoriesData.categoriesTracked.map(
-      (categoryItem: any) => {
-        return categoryItem.categoryName.toLowerCase();
+    const existingUserCategories = allCategoriesData.map(
+      (categoryItem: { name: string; }) => {
+        return categoryItem.name.toLowerCase();
       },
     );
 
@@ -82,7 +85,15 @@ export default function AddCategoryButton({
 
   return (
     <Dialog open={isCategoryModalOpen} onOpenChange={setIsCategoryModalOpen}>
-      <DialogTrigger className="ml-[10px] w-[40px] items-center justify-center rounded-full border border-neutral-800 bg-black text-lg font-medium text-neutral-100 hover:bg-neutral-800">
+      <DialogTrigger
+        disabled={disabled}
+        className={cn(
+          "ml-[10px] w-[40px] items-center justify-center rounded-full border bg-black text-lg font-medium text-neutral-100",
+          disabled
+            ? "border-neutral-900 text-neutral-500"
+            : "border-neutral-800 hover:bg-neutral-800",
+        )}
+      >
         +
       </DialogTrigger>
       <DialogContent>

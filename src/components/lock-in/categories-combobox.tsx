@@ -23,12 +23,14 @@ interface CategoriesComboboxProps {
   userCategory: string;
   setUserCategory: any;
   allCategoriesData: any;
+  disabled: boolean;
 }
 
 export function CategoriesCombobox({
   userCategory,
   setUserCategory,
   allCategoriesData,
+  disabled,
 }: CategoriesComboboxProps) {
   const [open, setOpen] = useState(false);
   const [allCategories, setAllCategories] = useState<any>([]);
@@ -36,12 +38,10 @@ export function CategoriesCombobox({
 
   useEffect(() => {
     if (allCategoriesData) {
-      categoriesArr = allCategoriesData.categoriesTracked.map(
-        (category: { categoryName: string }) => ({
-          value: category.categoryName.toLowerCase(),
-          label: category.categoryName,
-        }),
-      );
+      categoriesArr = allCategoriesData.map((category: { name: string }) => ({
+        value: category.name.toLowerCase(),
+        label: category.name,
+      }));
 
       setAllCategories(categoriesArr);
     }
@@ -55,11 +55,12 @@ export function CategoriesCombobox({
           role="combobox"
           aria-expanded={open}
           className="w-[250px] justify-between text-neutral-100"
+          disabled={disabled}
         >
           {userCategory
             ? allCategories.find(
-                (category: { value: string }) =>
-                  category.value === userCategory,
+                (category: { value: string; label: string }) =>
+                  category.label === userCategory,
               )?.label
             : "Select category..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 text-neutral-100 opacity-50" />
@@ -74,9 +75,9 @@ export function CategoriesCombobox({
               <CommandItem
                 key={category.value}
                 value={category.value}
-                onSelect={(currentValue) => {
+                onSelect={() => {
                   setUserCategory(
-                    currentValue === userCategory ? "" : currentValue,
+                    category.label === userCategory ? "" : category.label,
                   );
                   setOpen(false);
                 }}
@@ -84,7 +85,7 @@ export function CategoriesCombobox({
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    userCategory === category.value
+                    userCategory === category.label
                       ? "opacity-100"
                       : "opacity-0",
                   )}

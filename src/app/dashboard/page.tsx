@@ -7,14 +7,6 @@ import Footer from "~/components/shared/footer";
 import Header from "~/components/shared/header";
 
 export default function HomePage() {
-  // const router = useRouter();
-
-  // const test = api.userData.create.useMutation({
-  //   onSuccess: () => {
-  //     router.refresh();
-  //   },
-  // });
-
   const { data, status } = useSession();
 
   if (status === "unauthenticated") redirect("/");
@@ -31,15 +23,6 @@ export default function HomePage() {
           </div>
           <ComponentsGrid />
           <div className="flex w-full items-center justify-center py-3"></div>
-          {/* <button
-            onClick={(e) => {
-              e.preventDefault();
-              test.mutate({ categoryName: "test" });
-            }}
-            className="bg-white p-5 text-black"
-          >
-            TEST
-          </button> */}
         </div>
       </main>
       <Footer />
