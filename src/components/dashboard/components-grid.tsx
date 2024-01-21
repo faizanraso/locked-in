@@ -95,7 +95,7 @@ export default function ComponentsGrid() {
             <CurrentWeekOverview />
           </CardContent>
         </Card>
-        <Card className="col-span-7 flex h-full flex-col lg:col-span-3">
+        <Card className="col-span-7 flex h-full min-h-96 flex-col lg:col-span-3">
           <CardHeader>
             <CardTitle className="text-neutral-200">Breakdown</CardTitle>
             <CardDescription className="text-neutral-400">

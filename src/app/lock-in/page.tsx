@@ -18,7 +18,7 @@ export default function LockIn() {
         <h2 className="text-3xl font-bold tracking-tight text-neutral-200">
           Lock-In 🔒
         </h2>
-        <div className="flex flex-grow items-center justify-center">
+        <div className="flex flex-grow items-center justify-center py-2">
           <LockInForm />
         </div>
       </main>

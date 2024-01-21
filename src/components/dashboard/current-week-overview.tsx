@@ -40,7 +40,7 @@ export function CurrentWeekOverview() {
     <>
       {data ? (
         <ResponsiveContainer width="100%" height={350}>
-          <BarChart data={data}>
+          <BarChart data={data} layout="horizontal">
             <XAxis
               dataKey="name"
               stroke="#a3a3a3"
