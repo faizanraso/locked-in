@@ -88,7 +88,7 @@ export default function LockInForm() {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center gap-y-3 rounded-lg border border-neutral-800 p-8">
+    <section className="flex flex-col items-center justify-center gap-y-3 rounded-lg border border-neutral-800 p-8 sm:p-24">
       <div className="w-[300px] items-center rounded-lg border border-neutral-800 bg-black px-12 py-2 text-center">
         <span className="min-w-96 text-3xl text-neutral-100">
           {timerDisplayText}

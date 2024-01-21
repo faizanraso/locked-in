@@ -12,18 +12,14 @@ export default function LockIn() {
   if (status === "unauthenticated") redirect("/");
 
   return (
-    <div className="flex min-h-screen flex-col justify-between">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="mb-auto px-8 pt-10">
-        <div className="flex h-full w-full flex-col space-y-4">
-          <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight text-neutral-200">
-              Lock-In 🔒
-            </h2>
-          </div>
-          <div className="flex h-full w-full items-center justify-center py-10">
-            <LockInForm />
-          </div>
+      <main className="flex flex-grow flex-col px-8 py-10">
+        <h2 className="text-3xl font-bold tracking-tight text-neutral-200">
+          Lock-In 🔒
+        </h2>
+        <div className="flex flex-grow items-center justify-center">
+          <LockInForm />
         </div>
       </main>
       <Footer />
