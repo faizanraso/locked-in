@@ -11,7 +11,7 @@ export default function Header({
   return (
     <header
       className={cn(
-        "flex items-center justify-between border-b border-neutral-800 px-5 sm:px-10 py-4 lg:space-x-6",
+        "flex items-center justify-between border-b border-neutral-800 px-5 py-4 sm:px-10 lg:space-x-6",
         className,
       )}
       {...props}
