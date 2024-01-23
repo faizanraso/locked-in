@@ -44,6 +44,11 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
+    {
+      id: "resend",
+      type: "credentials",
+      sendVerificationRequest,
+    },
   ],
 };
 
