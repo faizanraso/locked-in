@@ -11,7 +11,7 @@ import {
   CommandInput,
   CommandItem,
 } from "~/components/ui/command";
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/utils/tailwind-merge";
 
 import {
   Popover,

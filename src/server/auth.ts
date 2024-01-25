@@ -9,6 +9,7 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+import sendVerificationRequest from "~/lib/utils/send-verification-request";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -55,6 +56,7 @@ export const authOptions: NextAuthOptions = {
         },
       },
       from: process.env.EMAIL_FROM,
+      sendVerificationRequest,
     }),
   ],
 };
