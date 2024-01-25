@@ -1,5 +1,4 @@
 import { createTransport } from "nodemailer";
-import { render } from "@react-email/render";
 
 export interface Theme {
   colorScheme?: "auto" | "dark" | "light";
@@ -15,11 +14,12 @@ export default async function sendVerificationRequest(params: {
   theme: any;
 }) {
   const { identifier, url, provider, theme } = params;
+
   const { host } = new URL(url);
   const transport = createTransport(provider.server);
   const result = await transport.sendMail({
     to: identifier,
-    from: provider.from,
+    from: { name: "Locked In 🔒", address: provider.from },
     subject: `Sign in to ${host}`,
     text: text({ url, host }),
     html: html({ url }),
@@ -35,25 +35,27 @@ function html(params: { url: string }) {
 
   return `
 
-<body style="background-color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica Neue&quot;,sans-serif">
-    <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:37.5em;margin:0 auto;padding:20px 25px 48px;background-position:bottom;background-repeat:no-repeat, no-repeat">
+  <body style="background-color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica Neue&quot;,sans-serif">
+    <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:37.5em;margin:0 auto;padding:20px 0 48px">
       <tbody>
         <tr style="width:100%">
-          <td><span style="display:block;outline:none;border:none;text-decoration:none;font-size:56px">🔒</span>
-            <h1 style="font-size:28px;font-weight:bold;margin-top:48px">🪄 Your login link</h1>
-            <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="margin:24px 0">
+          <td>
+            <h1 style="font-weight:semibold;font-size:36px;">
+              🔒 <span style="font-style: italic;">locked in</span>
+            </h1>
+            <p style="font-size:16px;line-height:26px;margin:16px 0">Hi <!-- -->there<!-- -->,</p>
+            <p style="font-size:16px;line-height:26px;margin:16px 0">Click on the button below to log in.</p>
+            <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="text-align:center">
+            <br />
               <tbody>
                 <tr>
-                  <td>
-                    <p style="font-size:16px;line-height:26px;margin:16px 0"><a href="${url}" style="color:#FF6363;text-decoration:none" target="_blank">👉 Click here to sign in 👈</a></p>
-                    <p style="font-size:16px;line-height:26px;margin:16px 0">If you didn&#x27;t request this, please ignore this email.</p>
-                  </td>
+                  <td><a href="${url}" style="background-color:#000000;border-radius:3px;color:#fff;font-weight:medium;font-size:16px;text-decoration:none;text-align:center;display:inline-block;padding:12px 12px 12px 12px;line-height:100%;max-width:100%" target="_blank"><span><!--[if mso]><i style="letter-spacing: 12px;mso-font-width:-100%;mso-text-raise:18" hidden>&nbsp;</i><![endif]--></span><span style="max-width:100%;display:inline-block;line-height:120%;mso-padding-alt:0px;mso-text-raise:9px">Get started</span><span><!--[if mso]><i style="letter-spacing: 12px;mso-font-width:-100%" hidden>&nbsp;</i><![endif]--></span></a></td>
                 </tr>
               </tbody>
             </table>
-            <p style="font-size:16px;line-height:26px;margin:16px 0">Best,<br />- Locked In</p>
-            <hr style="width:100%;border:none;border-top:1px solid #eaeaea;border-color:#dddddd;margin-top:48px" /><span style="display:block;outline:none;border:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);margin:20px 0;font-size:56px"></span>
-            <p style="font-size:12px;line-height:24px;margin:16px 0;color:#8898aa;margin-left:4px">Locked In </p>
+            <br />
+            <p style="font-size:16px;line-height:26px;margin:16px 0">Best,<br />The Locked In team</p>
+            <hr style="width:100%;border:none;border-top:1px solid #eaeaea;border-color:#cccccc;margin:20px 0" />
           </td>
         </tr>
       </tbody>
