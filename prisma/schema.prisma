@@ -42,7 +42,6 @@ model User {
   avgSessionLength  Float           @default(0)
   totalSessions     Int             @default(0)
   totalTimeLockedIn Float           @default(0)
-  categoriesTracked Json[]          @default([])
   accounts          Account[]
   sessions          Session[]
   userCategories    UserCategory[]

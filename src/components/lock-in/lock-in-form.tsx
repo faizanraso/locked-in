@@ -76,7 +76,7 @@ export default function LockInForm() {
   function handleStop() {
     if (!isSessionActive) return;
     setIsSessionActive(false);
-    console.log(userCategory, timer);
+
     userLISessionMutation.mutate({
       categoryName: userCategory,
       duration: timer,
