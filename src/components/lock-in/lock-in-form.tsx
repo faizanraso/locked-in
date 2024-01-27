@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getTimerDisplayText } from "~/lib/functions/get-timer-display-text";
+import { getTimerDisplayText } from "~/lib/helper";
 import { api } from "~/trpc/react";
 import { useToast } from "../ui/use-toast";
 

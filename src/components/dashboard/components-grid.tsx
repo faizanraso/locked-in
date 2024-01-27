@@ -56,7 +56,18 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? <Skeleton /> : userData?.avgSessionLength}
+              {isLoading ? (
+                <Skeleton />
+              ) : userData?.UserLISessions ? (
+                displayConvertedTime(
+                  userData?.UserLISessions.reduce(
+                    (acc, curr) => acc + curr.duration,
+                    0,
+                  ) / userData.UserLISessions.length || 0,
+                )
+              ) : (
+                0
+              )}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +10 min in the past week

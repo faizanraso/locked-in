@@ -34,22 +34,19 @@ model Session {
 }
 
 model User {
-  id                String          @id @default(cuid())
-  name              String?
-  email             String          @unique
-  emailVerified     DateTime?
-  image             String?
-  avgSessionLength  Float           @default(0)
-  totalSessions     Int             @default(0)
-  totalTimeLockedIn Float           @default(0)
-  accounts          Account[]
-  sessions          Session[]
-  userCategories    UserCategory[]
-  UserLISessions    UserLISession[]
+  id             String          @id @default(cuid())
+  name           String?
+  email          String          @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  userCategories UserCategory[]
+  UserLISessions UserLISession[]
 }
 
 model UserCategory {
-  id              String          @id @default("")
+  id              String          @id @default(cuid())
   userId          String?         @default("")
   name            String          @unique
   durationTracked Int
