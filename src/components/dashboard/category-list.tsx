@@ -50,7 +50,7 @@ export default function CategoryList({
                   </p>
                 </div>
                 <div className="ml-auto font-medium">
-                  {item.durationTracked} hours
+                  {(item.durationTracked / 3600000).toFixed(2)} hours
                 </div>
               </div>
             ))
