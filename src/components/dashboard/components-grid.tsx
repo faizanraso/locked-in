@@ -13,6 +13,7 @@ import {
 } from "~/components/ui/card";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { displayConvertedTime } from "~/lib/helper";
 
 export default function ComponentsGrid() {
   const { isLoading, data: userData } =
@@ -30,7 +31,16 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? <Skeleton /> : userData?.totalTimeLockedIn}
+              {isLoading ? (
+                <Skeleton />
+              ) : (
+                displayConvertedTime(
+                  userData?.UserLISessions.reduce(
+                    (acc, curr) => acc + curr.duration,
+                    0,
+                  ) || 0,
+                )
+              )}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +25 hours in the past week
@@ -62,7 +72,7 @@ export default function ComponentsGrid() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-neutral-200">
-              {isLoading ? <Skeleton /> : userData?.totalSessions}
+              {isLoading ? <Skeleton /> : userData?.UserLISessions.length}
             </div>
             {/* <p className="text-xs text-muted-foreground text-neutral-400">
               +3 in the past week

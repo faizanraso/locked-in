@@ -17,6 +17,7 @@ export const userDataRouter = createTRPCRouter({
           totalSessions: true,
           totalTimeLockedIn: true,
           userCategories: true,
+          UserLISessions: true,
         },
       });
     }),
