@@ -11,7 +11,7 @@ export function getTimerDisplayText(timer: number) {
 export function displayConvertedTime(duration: number) {
   // This function is used to convert ms to an appropriate unit of measurement (secs, mins or hours)
   if (duration < 60000) {
-    return `${(duration / 1000).toFixed(2)} secs`;
+    return `${(duration / 1000)} secs`;
   } else if (duration < 3600000) {
     return `${(duration / 60000).toFixed(2)} mins`;
   } else {

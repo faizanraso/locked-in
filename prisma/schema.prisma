@@ -47,11 +47,11 @@ model User {
 
 model UserCategory {
   id              String          @id @default(cuid())
-  userId          String?         @default("")
+  userId          String
   name            String          @unique
   durationTracked Int
   sessionsTracked Int
-  User            User?           @relation(fields: [userId], references: [id])
+  User            User            @relation(fields: [userId], references: [id])
   UserLISession   UserLISession[]
 }
 
