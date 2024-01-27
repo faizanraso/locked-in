@@ -11,6 +11,7 @@ import Link from "next/link";
 
 export function UserLoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
 
   async function signInWithGithub() {
     await signIn("github", {
@@ -20,6 +21,14 @@ export function UserLoginForm() {
 
   async function signInWithGoogle() {
     await signIn("google", {
+      callbackUrl: `${window.location.origin}/dashboard`,
+    });
+  }
+
+  async function signInWithEmail(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    await signIn("email", {
+      email,
       callbackUrl: `${window.location.origin}/dashboard`,
     });
   }
@@ -44,15 +53,17 @@ export function UserLoginForm() {
                 id="email"
                 placeholder="name@example.com"
                 type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
                 disabled={isLoading}
                 className="w-80 py-6"
-                value={"this doesnt work yet"}
               />
             </div>
             <Button
+              onClick={signInWithEmail}
               disabled={isLoading}
               className="w-80 bg-neutral-100 py-6 hover:bg-neutral-300"
             >

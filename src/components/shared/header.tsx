@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/utils/tailwind-merge";
 import { UserNav } from "./usernav";
 
 import { useSession } from "next-auth/react";

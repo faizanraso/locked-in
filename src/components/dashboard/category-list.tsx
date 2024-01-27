@@ -6,7 +6,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Button } from "../ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/utils/tailwind-merge";
 
 interface CategoryListProps {
   userCategoriesData: any;

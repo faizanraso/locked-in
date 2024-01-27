@@ -1,6 +1,7 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
+import EmailProvider from "next-auth/providers/email";
 import { db } from "~/server/db";
 
 import {
@@ -8,6 +9,7 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+import sendVerificationRequest from "~/lib/utils/send-verification-request";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -43,6 +45,18 @@ export const authOptions: NextAuthOptions = {
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    }),
+    EmailProvider({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: process.env.EMAIL_FROM,
+      sendVerificationRequest,
     }),
   ],
 };
