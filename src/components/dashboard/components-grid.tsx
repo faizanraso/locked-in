@@ -35,10 +35,12 @@ export default function ComponentsGrid() {
                 <Skeleton />
               ) : (
                 displayConvertedTime(
-                  userData?.UserLISessions.reduce(
-                    (acc, curr) => acc + curr.duration,
-                    0,
-                  ) || 0,
+                  userData?.UserLISessions
+                    ? userData?.UserLISessions.reduce(
+                        (acc, curr) => acc + curr.duration,
+                        0,
+                      )
+                    : 0,
                 )
               )}
             </div>
