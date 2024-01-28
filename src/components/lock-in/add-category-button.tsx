@@ -88,7 +88,7 @@ export default function AddCategoryButton({
       <DialogTrigger
         disabled={disabled}
         className={cn(
-          "ml-[10px] w-[40px] items-center justify-center rounded-full border bg-black text-lg font-medium text-neutral-100",
+          "ml-[10px] w-[40px] items-center justify-center rounded-full border bg-black text-lg font-medium text-neutral-200",
           disabled
             ? "border-neutral-900 text-neutral-500"
             : "border-neutral-800 hover:bg-neutral-800",

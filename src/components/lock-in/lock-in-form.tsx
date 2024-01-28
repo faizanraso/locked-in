@@ -90,7 +90,7 @@ export default function LockInForm() {
   return (
     <section className="flex flex-col items-center justify-center gap-y-3 rounded-lg border border-neutral-800 p-8 sm:p-24">
       <div className="w-[300px] items-center rounded-lg border border-neutral-800 bg-black px-12 py-2 text-center">
-        <span className="min-w-96 text-3xl text-neutral-100">
+        <span className="min-w-96 text-3xl text-neutral-200">
           {timerDisplayText}
         </span>
       </div>
@@ -111,14 +111,14 @@ export default function LockInForm() {
       </div>
       <div className="flex flex-col gap-y-4 py-2">
         <Button
-          className="w-[300px] bg-neutral-100 hover:bg-neutral-300"
+          className="w-[300px] bg-neutral-200 hover:bg-neutral-300"
           disabled={isSessionActive}
           onClick={handleStart}
         >
           Start Session
         </Button>
         <Button
-          className="w-[300px] bg-red-700 text-neutral-100 hover:bg-red-900"
+          className="w-[300px] bg-red-700 text-neutral-200 hover:bg-red-900"
           disabled={!isSessionActive}
           onClick={handleStop}
         >

@@ -54,7 +54,7 @@ export function UserSignupForm() {
             </div>
             <Button
               disabled={isLoading}
-              className="w-80 bg-neutral-100 py-6 hover:bg-neutral-300"
+              className="w-80 bg-neutral-200 py-6 hover:bg-neutral-300"
             >
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

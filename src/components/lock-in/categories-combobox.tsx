@@ -49,12 +49,12 @@ export function CategoriesCombobox({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild className="text-neutral-100">
+      <PopoverTrigger asChild className="text-neutral-200">
         <Button
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[250px] justify-between text-neutral-100"
+          className="w-[250px] justify-between text-neutral-200"
           disabled={disabled}
         >
           {userCategory
@@ -63,10 +63,10 @@ export function CategoriesCombobox({
                   category.label === userCategory,
               )?.label
             : "Select category..."}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 text-neutral-100 opacity-50" />
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 text-neutral-200 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[250px] p-0 text-neutral-100">
+      <PopoverContent className="w-[250px] p-0 text-neutral-200">
         <Command className="">
           <CommandInput placeholder="Search category..." />
           <CommandEmpty>No category found.</CommandEmpty>
