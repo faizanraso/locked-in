@@ -63,8 +63,8 @@ export default function Header() {
                 className={cn(
                   "rounded-lg p-2 text-sm font-medium transition-colors hover:bg-zinc-800",
                   currentPage.includes(page.path)
-                    ? "text-neutral-100"
-                    : "text-muted-foreground hover:text-neutral-100",
+                    ? "text-neutral-200"
+                    : "text-muted-foreground hover:text-neutral-200",
                 )}
               >
                 {page.name}

@@ -42,7 +42,9 @@ export function UserLoginForm() {
       </div>
 
       <div className="grid w-full flex-col items-center justify-center gap-6 p-5">
-        <h1 className="text-center text-3xl font-bold">Welcome back</h1>
+        <h1 className="text-center text-3xl font-bold text-neutral-200">
+          Welcome back
+        </h1>
         <form className="">
           <div className="grid gap-3">
             <div className="grid gap-1">
@@ -65,7 +67,7 @@ export function UserLoginForm() {
             <Button
               onClick={signInWithEmail}
               disabled={isLoading}
-              className="w-80 bg-neutral-100 py-6 hover:bg-neutral-300"
+              className="w-80 bg-neutral-200 py-6 hover:bg-neutral-300"
             >
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
