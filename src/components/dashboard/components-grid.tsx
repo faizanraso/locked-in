@@ -60,7 +60,7 @@ export default function ComponentsGrid() {
             <div className="text-2xl font-bold text-neutral-200">
               {isLoading ? (
                 <Skeleton />
-              ) : userData?.UserLISessions ? (
+              ) : userData?.UserLISessions.length ? (
                 displayConvertedTime(
                   userData?.UserLISessions.reduce(
                     (acc, curr) => acc + curr.duration,
