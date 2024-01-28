@@ -13,7 +13,6 @@ type LoginTypes = "" | "github" | "email" | "google";
 
 export function UserSignupForm() {
   const [isLoading, setIsLoading] = useState<LoginTypes>("");
-
   const [email, setEmail] = useState<string>("");
 
   async function signInWithGithub() {
@@ -74,7 +73,7 @@ export function UserSignupForm() {
             <Button
               type="submit"
               // onClick={signInWithEmail}
-              disabled={isLoading !== ""}
+              disabled={!email}
               className="w-80 bg-neutral-200 py-6 hover:bg-neutral-300"
             >
               {isLoading == "email" && (
