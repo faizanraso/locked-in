@@ -7,6 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Button } from "../ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { cn } from "~/lib/utils/tailwind-merge";
+import { displayConvertedTime } from "~/lib/helper";
 
 interface CategoryListProps {
   userCategoriesData: any;
@@ -50,7 +51,7 @@ export default function CategoryList({
                   </p>
                 </div>
                 <div className="ml-auto font-medium">
-                  {(item.durationTracked / 3600000).toFixed(2)} hours
+                  {displayConvertedTime(item.durationTracked)}
                 </div>
               </div>
             ))
@@ -82,7 +83,11 @@ export default function CategoryList({
           variant="outline"
           className="h-8 w-8 p-0"
           onClick={() => getNextPage()}
-          disabled={!userCategoriesData || currentPage === maxPage}
+          disabled={
+            !userCategoriesData ||
+            currentPage === maxPage ||
+            userCategoriesData.length < 6
+          }
         >
           <ChevronRightIcon className="h-4 w-4" />
         </Button>

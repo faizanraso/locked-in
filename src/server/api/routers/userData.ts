@@ -13,10 +13,8 @@ export const userDataRouter = createTRPCRouter({
       return ctx.db.user.findFirst({
         where: { id: ctx.session.user.id },
         select: {
-          avgSessionLength: true,
-          totalSessions: true,
-          totalTimeLockedIn: true,
           userCategories: true,
+          UserLISessions: true,
         },
       });
     }),
