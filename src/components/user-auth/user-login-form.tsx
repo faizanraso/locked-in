@@ -10,16 +10,21 @@ import { Input } from "~/components/ui/input";
 import Link from "next/link";
 
 export function UserLoginForm() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isEmailLoading, setIsEmailLoading] = useState<boolean>(false);
+  const [isGmailLoading, setIsGmailLoading] = useState<boolean>(false);
+  const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false);
+
   const [email, setEmail] = useState<string>("");
 
   async function signInWithGithub() {
+    setIsGithubLoading(true);
     await signIn("github", {
       callbackUrl: `${window.location.origin}/dashboard`,
     });
   }
 
   async function signInWithGoogle() {
+    setIsGmailLoading(true);
     await signIn("google", {
       callbackUrl: `${window.location.origin}/dashboard`,
     });
@@ -27,6 +32,7 @@ export function UserLoginForm() {
 
   async function signInWithEmail(e: { preventDefault: () => void }) {
     e.preventDefault();
+    setIsEmailLoading(true);
     await signIn("email", {
       email,
       callbackUrl: `${window.location.origin}/dashboard`,
@@ -53,6 +59,7 @@ export function UserLoginForm() {
               </Label>
               <Input
                 id="email"
+                required
                 placeholder="name@example.com"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -60,16 +67,18 @@ export function UserLoginForm() {
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
-                disabled={isLoading}
+                disabled={isEmailLoading || isGmailLoading || isGithubLoading}
                 className="w-80 py-6"
               />
             </div>
             <Button
               onClick={signInWithEmail}
-              disabled={isLoading}
+              disabled={
+                isEmailLoading || isGmailLoading || isGithubLoading || !email
+              }
               className="w-80 bg-neutral-200 py-6 hover:bg-neutral-300"
             >
-              {isLoading && (
+              {isEmailLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
               Continue
@@ -102,8 +111,9 @@ export function UserLoginForm() {
             className="flex w-80 items-center justify-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
             type="button"
             onClick={signInWithGithub}
+            disabled={isEmailLoading || isGmailLoading || isGithubLoading}
           >
-            {!isLoading ? (
+            {!isGithubLoading ? (
               <Icons.gitHub className="mr-2 h-4 w-4" />
             ) : (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -114,8 +124,9 @@ export function UserLoginForm() {
             className="justify flex w-80 items-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
             type="button"
             onClick={signInWithGoogle}
+            disabled={isEmailLoading || isGmailLoading || isGithubLoading}
           >
-            {!isLoading ? (
+            {!isGmailLoading ? (
               <Icons.google className="mr-2 h-4 w-4" />
             ) : (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

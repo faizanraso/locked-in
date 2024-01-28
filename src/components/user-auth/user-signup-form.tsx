@@ -9,17 +9,32 @@ import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 import Link from "next/link";
 
+type LoginTypes = "" | "github" | "email" | "google";
+
 export function UserSignupForm() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<LoginTypes>("");
+
+  const [email, setEmail] = useState<string>("");
 
   async function signInWithGithub() {
+    setIsLoading("github");
     await signIn("github", {
       callbackUrl: `${window.location.origin}/dashboard`,
     });
   }
 
   async function signInWithGoogle() {
+    setIsLoading("google");
     await signIn("google", {
+      callbackUrl: `${window.location.origin}/dashboard`,
+    });
+  }
+
+  async function signInWithEmail(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    setIsLoading("email");
+    await signIn("email", {
+      email,
       callbackUrl: `${window.location.origin}/dashboard`,
     });
   }
@@ -33,8 +48,10 @@ export function UserSignupForm() {
       </div>
 
       <div className="grid w-full flex-col items-center justify-center gap-6 p-5">
-        <h1 className="text-center text-3xl font-bold">Create your account</h1>
-        <form className="">
+        <h1 className="text-center text-3xl font-bold text-neutral-200">
+          Create your account
+        </h1>
+        <form onSubmit={signInWithEmail} className="">
           <div className="grid gap-3">
             <div className="grid gap-1">
               <Label className="sr-only" htmlFor="email">
@@ -42,21 +59,25 @@ export function UserSignupForm() {
               </Label>
               <Input
                 id="email"
+                required
                 placeholder="name@example.com"
                 type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
-                disabled={isLoading}
+                disabled={isLoading !== ""}
                 className="w-80 py-6"
-                value={"this doesnt work yet"}
               />
             </div>
             <Button
-              disabled={isLoading}
+              type="submit"
+              // onClick={signInWithEmail}
+              disabled={isLoading !== ""}
               className="w-80 bg-neutral-200 py-6 hover:bg-neutral-300"
             >
-              {isLoading && (
+              {isLoading == "email" && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
               Continue
@@ -89,8 +110,9 @@ export function UserSignupForm() {
             className="flex w-80 items-center justify-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
             type="button"
             onClick={signInWithGithub}
+            disabled={isLoading !== ""}
           >
-            {!isLoading ? (
+            {isLoading !== "github" ? (
               <Icons.gitHub className="mr-2 h-4 w-4" />
             ) : (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -101,8 +123,9 @@ export function UserSignupForm() {
             className="justify flex w-80 items-center gap-x-2 rounded-lg border border-neutral-800 bg-black py-6 text-neutral-200 hover:bg-neutral-800"
             type="button"
             onClick={signInWithGoogle}
+            disabled={isLoading !== ""}
           >
-            {!isLoading ? (
+            {isLoading !== "google" ? (
               <Icons.google className="mr-2 h-4 w-4" />
             ) : (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
